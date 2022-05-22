@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 
-const db = new Sequelize('project_db', 'root', '', {
+const db = new Sequelize('traveloka_ocr', 'root', '', {
     host: 'localhost',
     dialect: 'mysql'
 });
