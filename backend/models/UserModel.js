@@ -6,7 +6,7 @@ const { DataTypes } = Sequelize;
 const User = db.define('users', {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
-    password: DataTypes.STRING,
+    Password: DataTypes.STRING,
     tlp: DataTypes.STRING
 }, {
     freezeTableName: true

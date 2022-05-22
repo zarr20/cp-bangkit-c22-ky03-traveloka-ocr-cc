@@ -10,7 +10,7 @@ Content-Type: application/json
 {
     "name": "Edita Aulia",
     "email": "editaaulia@gmail.com",
-    "passsword": "12345",
+    "Passsword": "12345",
     "tlp": "082125783365"
 }
 
@@ -21,7 +21,7 @@ Content-Type: application/json
 {
     "name": "Dzarr",
     "email": "dzarra@gmail.com",
-    "passsword": "123456",
+    "Passsword": "123456",
     "tlp": "082135672280"
 }
 
