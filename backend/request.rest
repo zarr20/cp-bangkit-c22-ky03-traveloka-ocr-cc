@@ -27,3 +27,55 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5000/users/2
+
+
+<!-- request.rest data ktp -->
+
+###
+GET http://localhost:5000/dataktp
+
+###
+GET http://localhost:5000/dataktp/1
+
+###
+POST http://localhost:5000/dataktp
+Content-Type: application/json
+
+{
+    "nik": 3523160606800003,
+    "name": "MAFTUCHIN",
+    "tempat": "JAKARTA",
+    "tgl_lahir": "06-06-1973",
+    "jenis_kelamin": "LAKI-LAKI",
+    "gol_darah": "B",
+    "alamat": "JL. MASJID ALFALAH 001/002",
+    "agama": "ISLAM",
+    "status_perkawinan": "KAWIN",
+    "pekerjaan": "WIRASWASTA",
+    "kewarganegaraan": "WNI",
+    "kode_pos": "16417",
+    "status": "PENDING"
+}
+
+###
+PATCH http://localhost:5000/dataktp/1
+Content-Type: application/json
+
+{
+    "nik": 3529160606800004,
+    "name": "RINA",
+    "tempat": "JAKARTA",
+    "tgl_lahir": "06-06-1999",
+    "jenis_kelamin": "PEREMPUAN",
+    "gol_darah": "O",
+    "alamat": "JL. DIPONOGORO BLOK B/164",
+    "agama": "ISLAM",
+    "status_perkawinan": "BELUM KAWIN",
+    "pekerjaan": "PELAJAR",
+    "kewarganegaraan": "WNI",
+    "kode_pos": "16418",
+    "status": "PENDING"
+}
+
+###
+DELETE http://localhost:5000/dataktp/2
