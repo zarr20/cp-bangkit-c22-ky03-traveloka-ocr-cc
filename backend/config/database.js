@@ -1,6 +1,8 @@
 import { Sequelize } from "sequelize";
 
-const db = new Sequelize('nama_db','root','123456', {
-host: 'localhost',
-dialect:'mysql'
+const db = new Sequelize('traveloka_ocr', 'root', '', {
+    host: 'localhost',
+    dialect: 'mysql'
 });
+
+export default db;
