@@ -9,12 +9,14 @@ const dataktp = db.define('dataktp', {
     tempat: DataTypes.STRING,
     tgl_lahir: DataTypes.STRING,
     jenis_kelamin: DataTypes.STRING,
+    gol_darah: DataTypes.STRING,
     alamat: DataTypes.STRING,
     agama: DataTypes.STRING,
     status_perkawinan: DataTypes.STRING,
     pekerjaan: DataTypes.STRING,
     kewarganegaraan: DataTypes.STRING,
-    kode_pos: DataTypes.STRING
+    kode_pos: DataTypes.STRING,
+    status: DataTypes.STRING 
 }, {
     freezeTableName: true
 });
