@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
-const Dashboard = () => {
+const ManageData = () => {
   return (
     <div>
     <header style={{ background: "#4c0bce", boxShadow: "#0000002e 0px 3px 4px", color: "white" }}>
@@ -21,6 +21,7 @@ const Dashboard = () => {
     <div className="container mt-3">
       <div className="row">
         <div className="sideNav col-sm-3">
+            {/* Navigasi nanti di buat Component */}
           <NavLink exact={true} activeClassName='active' to='/dashboard'>
             <i class="bi bi-speedometer2 me-2"></i> Dashboard
           </NavLink>
@@ -43,4 +44,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default ManageData

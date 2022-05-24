@@ -17,10 +17,9 @@ const Login = () => {
           <button type="button" class="mt-4 w-100  btn btn-outline-dark fw-bold">Login</button>
         </div>
         
-
         <div className='d-flex justify-content-center mt-5'>
-          <img src="/assets/img/bangkit-logo.png" style={{ "max-height": "45px" }} />
-          <img src="/assets/img/traveloka-logo.png" style={{ "max-height": "45px" }} />
+          <img src="/assets/img/bangkit-logo.png" style={{ "max-height": "25px" }} />
+          <img src="/assets/img/traveloka-logo.png" style={{ "max-height": "25px" }} />
         </div>
       </div>
      
