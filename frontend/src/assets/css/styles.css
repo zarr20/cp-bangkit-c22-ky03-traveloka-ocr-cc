@@ -1,0 +1,19 @@
+
+  div#root, body {
+    min-height: 100vh;
+  }
+  
+  .sideNav div.active {
+    background: rgb(40, 30, 60);
+    margin-bottom: 7px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    color: white;
+    box-shadow: rgb(233 233 233) 0px 5px 10px; 
+  }
+
+  .sideNav div{
+    margin-bottom: 7px;
+    padding: 10px 20px;
+    border-radius: 999px;
+  }
