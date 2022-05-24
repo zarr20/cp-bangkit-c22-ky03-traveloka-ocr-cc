@@ -3,7 +3,7 @@ import React from 'react'
 import HeaderAdmin from '../../components/Admin/header'
 import NavAdmin from '../../components/Admin/navigation'
 
-const ManageData = () => {
+const ManageUser = () => {
   return (
     <div>
       <HeaderAdmin />
@@ -19,4 +19,4 @@ const ManageData = () => {
   )
 }
 
-export default ManageData
+export default ManageUser
