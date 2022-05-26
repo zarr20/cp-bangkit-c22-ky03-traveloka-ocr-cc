@@ -1,8 +1,21 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 import HeaderAdmin from "../../components/Admin/header";
 import NavAdmin from "../../components/Admin/navigation";
 
+const ManageData = () => {
+  const [dataktp, setdataktp] = useState([]);
+
+  useEffect(() => {
+    _getdataktp();
+  }, []);
+
+  const _getdataktp= async () => {
+    const response = await axios.get('http://localhost:5000/dataktp');
+    setUser(response.data);
+    console.log(response.data);
+  }
    
   return (
     <div>
@@ -34,7 +47,9 @@ import NavAdmin from "../../components/Admin/navigation";
                 </tr>
               </thead>
               <tbody>
-                  <th scope="row"></th>
+                {users.map((user, index) => (
+                 <tr key={dataktp.id}>
+                  <th scope="row">{index + 1}</th>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -53,6 +68,7 @@ import NavAdmin from "../../components/Admin/navigation";
                     
                   </td>
                 </tr>
+               ))}
               </tbody>
             </table>
             </div>
