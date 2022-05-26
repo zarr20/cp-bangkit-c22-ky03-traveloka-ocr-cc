@@ -73,15 +73,16 @@ const ManageUser = () => {
                 td > { user.tlp } < /td> <
                 td >
                 <
-                Link to = {
-                    `edit/${user.id}`
-                }
-                className = "btn btn-danger" > < i class = "bi bi-trash" > < /i></Link >
-                <
                 button onClick = {
                     () => deleteUser(user.id)
                 }
-                className = "btn btn-light" > < i class = "bi bi-pen" > < /i></button > <
+                className = "btn btn-danger" > < i class = "bi bi-trash" > < /i></button >
+
+                <
+                Link to = {
+                    `edit/${user.id}`
+                }
+                className = "btn btn-light" > < i class = "bi bi-pen" > < /i></Link > <
                 /td> <
                 td >
                 <
