@@ -26,10 +26,10 @@ function App() {
         Route exact path = "/manage-user"
         element = { < ManageUser / > }
         />  <
-        Route exact path = "add"
+        Route exact path = "manage-user/add"
         element = { < AddUser / > }
         /> <
-        Route exact path = "edit/:id"
+        Route exact path = "manage-user/edit/:id"
         element = { < EditUser / > }
         />< /
         Routes > <

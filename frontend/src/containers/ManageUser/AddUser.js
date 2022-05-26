@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const AddUser = () => {
 const [name, setName] = useState("");
 const [email, setEmail] = useState("");
-const [telepon, setTelepon] = useState("");
+const [tlp, settlp] = useState("");
 const Navigate = useNavigate();
 
 const saveUser = async (e) => {
@@ -14,7 +14,7 @@ const saveUser = async (e) => {
         await axios.post('http://localhost:5000/users', {
         name,
         email,
-        telepon
+        tlp
     });
     Navigate("/");
 } catch(error) {
@@ -41,7 +41,7 @@ const saveUser = async (e) => {
             <div className="field">
                 <label className="label">Telepon</label>
                 <div className="control">
-                    <input type="text" className="input" value={telepon} onChange={(e) => setTelepon(e.target.value)} placeholder="Telepon" />
+                    <input type="text" className="input" value={tlp} onChange={(e) => settlp(e.target.value)} placeholder="Telepon" />
                 </div>
             </div>
             <div className="field">
