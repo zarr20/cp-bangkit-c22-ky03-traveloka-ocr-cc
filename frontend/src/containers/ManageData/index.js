@@ -1,9 +1,23 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+// import { _getUsers } from "../../API/dataktp/getUsers";
 
 import HeaderAdmin from "../../components/Admin/header";
 import NavAdmin from "../../components/Admin/navigation";
 
 const ManageData = () => {
+    const [dataktp, setdataktp] = useState([]);
+
+    useEffect(() => {
+        _getdataktp();
+    }, []);
+
+    const _getdataktp = async() => {
+        const response = await axios.get('http://localhost:5000/dataktp');
+        setdataktp(response.data);
+        console.log(response.data);
+    }
+    
   return (
     <div>
       <HeaderAdmin />
@@ -34,8 +48,9 @@ const ManageData = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
+                {dataktp.map((dataktp, index) => (
+                <tr key={dataktp.id}>
+                  <th scope="row">{index + 1}</th>
                   <td></td>
                   <td></td>
                   <td></td>
