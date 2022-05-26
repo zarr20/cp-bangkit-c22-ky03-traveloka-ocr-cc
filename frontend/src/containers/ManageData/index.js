@@ -11,12 +11,12 @@ const ManageData = () => {
     _getdataktp();
   }, []);
 
-  const _getdataktp= async () => {
+  const _getdataktp = async () => {
     const response = await axios.get('http://localhost:5000/dataktp');
-    setUser(response.data);
+    setdataktp(response.data);
     console.log(response.data);
   }
-   
+
   return (
     <div>
       <HeaderAdmin />
@@ -27,15 +27,16 @@ const ManageData = () => {
 
           <div class="col-sm-8">
             <h1 className="fs-4 fw-bold">Manage User</h1>
-            <div className="mt-4">
             <button className="btn btn-primary"><i class="bi bi-person-plus me-3"></i> Add</button>
-            <table class="table caption-top">
-              <thead>
-                <tr>
-                  <th scope="col">No</th>
+            <div className="" style={{"overflow-x": "auto"}}>
+              
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">No</th>
                     <th scope="col">NIK</th>
                     <th scope="col">Nama</th>
-                    <th scope="col">Tempat, Tanggal Lahir</th>
+                    <th scope="col">TTL</th>
                     <th scope="col">Jenis Kelamin</th>
                     <th scope="col">Alamat</th>
                     <th scope="col">Kode Pos</th>
@@ -44,35 +45,35 @@ const ManageData = () => {
                     <th scope="col">Pekerjaan</th>
                     <th scope="col">Kewarganegaraan</th>
                     <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((user, index) => (
-                 <tr key={dataktp.id}>
-                  <th scope="row">{index + 1}</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <div className="d-flex gap-2">
-                    <button className="btn btn-danger"><i class="bi bi-trash"></i></button>
-                    <button className="btn btn-light"><i class="bi bi-pen"></i></button>
-                    </div>
-                    
-                  </td>
-                </tr>
-               ))}
-              </tbody>
-            </table>
+                  </tr>
+                </thead>
+                <tbody>
+                  {dataktp.map((ktp, index) => (
+                    <tr key={ktp.id}>
+                      <th scope="row">{index + 1}</th>
+                      <td>{ktp.nik}</td>
+                      <td>{ktp.name}</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <div className="d-flex gap-2">
+                          <button className="btn btn-danger"><i class="bi bi-trash"></i></button>
+                          <button className="btn btn-light"><i class="bi bi-pen"></i></button>
+                        </div>
+
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-            
+
           </div>
 
         </div>
