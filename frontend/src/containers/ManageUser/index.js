@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link }
-from "react-router-dom";
+    from "react-router-dom";
 // import { _getUsers } from "../../API/dataktp/getUsers";
 
 import HeaderAdmin from "../../components/Admin/header";
@@ -14,13 +14,13 @@ const ManageUser = () => {
         _getUsers();
     }, []);
 
-    const _getUsers = async() => {
+    const _getUsers = async () => {
         const response = await axios.get('http://localhost:5000/users');
         setUser(response.data);
         console.log(response.data);
     }
 
-    const deleteUser = async(id) => {
+    const deleteUser = async (id) => {
         try {
             await axios.delete(`http://localhost:5000/users/${id}`);
             _getUsers();
@@ -98,6 +98,9 @@ const ManageUser = () => {
 </div>
         </div> 
         </div>
+    
+    
+
     );
 };
 

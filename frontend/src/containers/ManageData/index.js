@@ -76,10 +76,11 @@ const ManageData = () => {
         </table > 
         </div>
 
-        </div>
+         
+        </div> 
 
         </div> 
-        </div > 
+        </div> 
         </div>
     );
 };
