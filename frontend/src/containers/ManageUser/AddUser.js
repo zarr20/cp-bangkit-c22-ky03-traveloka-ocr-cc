@@ -16,7 +16,7 @@ const saveUser = async (e) => {
         email,
         tlp
     });
-    Navigate("/");
+    Navigate("/manage-user");
 } catch(error) {
     console.log(error);
 }

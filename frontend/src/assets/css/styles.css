@@ -1,28 +1,33 @@
-
-  div#root, body {
+div#root,
+body {
     min-height: 100vh;
-  }
-  
-.sideNav a {
-  display: block;
 }
 
-  .sideNav a.active {
+.sideNav a {
+    display: block;
+}
+
+.sideNav a.active {
     background: rgb(40, 30, 60);
     margin-bottom: 7px;
     padding: 10px 20px;
     border-radius: 999px;
     color: white;
-    box-shadow: rgb(233 233 233) 0px 5px 10px; 
-  }
+    box-shadow: rgb(233 233 233) 0px 5px 10px;
+}
 
-  .sideNav div, .sideNav a{
+.sideNav div,
+.sideNav a {
     margin-bottom: 7px;
     padding: 10px 20px;
     border-radius: 999px;
-  }
+}
 
-  .sideNav a {
+.sideNav a {
     text-decoration: none;
-    color:black;
-  }
+    color: black;
+}
+
+.position {
+    position: relative;
+}

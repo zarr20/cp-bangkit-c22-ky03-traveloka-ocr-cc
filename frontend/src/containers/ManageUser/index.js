@@ -30,65 +30,50 @@ const ManageUser = () => {
         }
     }
 
-    return ( <
-        div >
-        <
-        HeaderAdmin / >
+    return ( 
+        <div>
+        <HeaderAdmin / >
 
-        <
-        div className = "container mt-3" >
-        <
-        div className = "row" >
-        <
-        NavAdmin / >
-        <
-        div class = "col-sm-8" >
-        <
-        h1 className = "fs-4 fw-bold" > Manage User < /h1> <
-        div className = "mt-4" >
-        <
-        Link to = { `add` }
-        className = "btn btn-primary" > < i class = "bi bi-person-plus me-3" > < /i> Add</Link >
-        <
-        table class = "table caption-top" >
-        <
-        thead >
-        <
-        tr >
-        <
-        th scope = "col" > No < /th> <
-        th scope = "col" > Nama < /th> <
-        th scope = "col" > Email < /th> <
-        th scope = "col" > No.Telepon < /th> <
-        th scope = "col" > Action < /th> < /
-        tr > <
-        /thead> <
-        tbody > {
-            users.map((user, index) => ( <
-                tr >
-                <
-                th scope = "row" > { index + 1 } < /th> <
-                td > { user.name } < /td> <
-                td > { user.email } < /td> <
-                td > { user.tlp } < /td> <
-                td >
+        <div className = "container mt-3" >
+        <div className = "row" >
+        <NavAdmin / >
+        <div class = "col-sm-8" >
+        <h1 className = "fs-4 fw-bold" > Manage User </h1> 
+        <div className = "mt-4" >
+        <Link to = {`add`}
+        className = "btn btn-primary" > < i class = "bi bi-person-plus me-3" > </i> Add</Link >
+        <table class = "table caption-top" >
+        <thead >
+        <tr>
+        <th scope = "col" > No </th> 
+        <th scope = "col" > Nama </th> 
+        <th scope = "col" > Email </th> 
+        <th scope = "col" > No.Telepon </th> 
+        <th scope = "col" > Action </th> 
+        </tr > 
+        </thead> 
+        <tbody> {
+            users.map((user, index) => ( 
+                <tr>
+                <th scope = "row" > { index + 1 } </th> 
+                <td> { user.name } </td> 
+                <td> { user.email } </td> 
+                <td> { user.tlp } </td> 
+                <td>
 
-                <
-                button onClick = {
+                <button onClick = {
                     () => deleteUser(user.id)
                 }
-                className = "btn btn-danger" > < i class = "bi bi-trash" > < /i></button >
+                className = "btn btn-danger" > < i class = "bi bi-trash" > </i></button >
 
-                <
-                Link to = {
+                <Link to = {
                     `edit/${user.id}`
                 }
-                className = "btn btn-light" > < i class = "bi bi-pen" > < /i></Link > <
-                /td> <
-                td >
-                <
-                /td> < /
-                tr >
+                className = "btn btn-light" > < i class = "bi bi-pen" > </i></Link > 
+                </td> 
+                <td>
+                </td> 
+                </tr >
             ))
         } {
             /* <tr>
@@ -104,18 +89,15 @@ const ManageUser = () => {
 
                                 </td>
                               </tr> */
-        } <
-        /tbody> < /
-        table > <
-        /div>
+        } 
+        </tbody> 
+        </table > 
+        </div>
 
-        <
-        /div>
-
-        <
-        /div> < /
-        div > <
-        /div>
+        </div>
+</div>
+        </div> 
+        </div>
     );
 };
 

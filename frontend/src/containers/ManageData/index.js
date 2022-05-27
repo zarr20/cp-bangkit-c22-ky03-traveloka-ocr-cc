@@ -1,84 +1,87 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link }
+from "react-router-dom";
+
 
 import HeaderAdmin from "../../components/Admin/header";
 import NavAdmin from "../../components/Admin/navigation";
 
 const ManageData = () => {
-  const [dataktp, setdataktp] = useState([]);
+    const [dataktp, setdataktp] = useState([]);
 
-  useEffect(() => {
-    _getdataktp();
-  }, []);
+    useEffect(() => {
+        _getdataktp();
+    }, []);
 
-  const _getdataktp= async () => {
-    const response = await axios.get('http://localhost:5000/dataktp');
-    setUser(response.data);
-    console.log(response.data);
-  }
-   
-  return (
-    <div>
-      <HeaderAdmin />
+    const _getdataktp = async() => {
+        const response = await axios.get('http://localhost:5000/dataktp');
+        setdataktp(response.data);
+        console.log(response.data);
+    }
 
-      <div className="container mt-3">
-        <div className="row">
-          <NavAdmin />
+    const deletedataktp = async(id) => {
+        try {
+            await axios.delete(`http://localhost:5000/dataktp/${id}`);
+            _getdataktp();
+        } catch (error) {
+            console.log(error);
 
-          <div class="col-sm-8">
-            <h1 className="fs-4 fw-bold">Manage User</h1>
-            <div className="mt-4">
-            <button className="btn btn-primary"><i class="bi bi-person-plus me-3"></i> Add</button>
-            <table class="table caption-top">
-              <thead>
+        }
+    }
+
+    return ( 
+        <div >
+        <HeaderAdmin / >
+        <div className = "container mt-3" >
+        <div className = "row" >
+        <NavAdmin / >
+        <div class = "col-sm-8" >
+        <h1 className = "fs-4 fw-bold" > Manage Data KTP </h1> 
+        <div className = "mt-4" >
+        <table class = "table caption-top" >
+        <thead >
+        <tr >
+        <th scope = "col" > No </th> 
+        <th scope = "col" > NIK </th> 
+        <th scope = "col" > Nama </th>  
+        <th scope = "col" > Action </th> 
+        </tr > 
+        </thead> 
+        <tbody > {
+            dataktp.map((dataktp, index) => ( 
                 <tr>
-                  <th scope="col">No</th>
-                    <th scope="col">NIK</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">Tempat, Tanggal Lahir</th>
-                    <th scope="col">Jenis Kelamin</th>
-                    <th scope="col">Alamat</th>
-                    <th scope="col">Kode Pos</th>
-                    <th scope="col">Agama</th>
-                    <th scope="col">Status Perkawinan</th>
-                    <th scope="col">Pekerjaan</th>
-                    <th scope="col">Kewarganegaraan</th>
-                    <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((user, index) => (
-                 <tr key={dataktp.id}>
-                  <th scope="row">{index + 1}</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <div className="d-flex gap-2">
-                    <button className="btn btn-danger"><i class="bi bi-trash"></i></button>
-                    <button className="btn btn-light"><i class="bi bi-pen"></i></button>
-                    </div>
-                    
-                  </td>
-                </tr>
-               ))}
-              </tbody>
-            </table>
-            </div>
+                <th scope = "row" > { index + 1 } </th> 
+                <td> { dataktp.nik } </td> 
+                <td> { dataktp.name } </td>
+                <td>
+                <Link to = {
+                    `details/${dataktp.id}`
+                }
+                className = "btn btn-success" > <p class="position" > Details </p> </Link >
+                <button onClick = {
+                    () => deletedataktp(user.id)
+                }
+                className = "btn btn-danger" > <i class = "bi bi-trash" > </i> </button>
+
+                <Link to = {
+                    `edit/${dataktp.id}`
+                }
+                className = "btn btn-light" > < i class = "bi bi-pen" > </i></Link > 
+                </td> 
+                 </tr>
+            ))} 
             
-          </div>
+        </tbody> 
+        </table > 
+        </div>
 
         </div>
-      </div>
-    </div>
-  );
+
+        </div> 
+        </div > 
+        </div>
+    );
 };
 
 export default ManageData;
