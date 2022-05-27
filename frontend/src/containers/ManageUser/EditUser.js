@@ -21,7 +21,7 @@ const updateUser = async (e) => {
         email,
         telepon
     });
-    Navigate("/");
+    Navigate("/manage-user");
 } catch(error) {
     console.log(error);
 }
