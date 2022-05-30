@@ -25,7 +25,7 @@ export const getdataktpById = async (req, res) => {
 export const createdataktp = async (req, res) => {
   try {
     // await dataktp.create(req.body);
-    const _status = { status: "pending" };
+    const _status = { status: "menunggu" };
     const _body = req.body;
 
     delete _body['status']; // semua data ktp defaultnya harus pending
@@ -38,6 +38,35 @@ export const createdataktp = async (req, res) => {
     console.log(error.message);
   }
 };
+
+// Terima dataktp
+// Tolak dataktp
+
+export const terimadataktp = async (req,res) => {
+    try {
+        await dataktp.update({status: "diterima"}, {
+            where: {
+                id: req.param.id,
+            },
+        });
+        res.status(200).json({msg: "Data KTP Diterima"});
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+export const tolakdataktp = async (req,res) => {
+    try {
+        await dataktp.update({status: "ditolak"}, {
+            where: {
+                id: req.param.id,
+            },
+        });
+        res.status(200).json({msg: "Data KTP Ditolak"});
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
 export const updatedataktp = async (req, res) => {
   try {
