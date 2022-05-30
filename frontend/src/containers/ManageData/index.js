@@ -45,7 +45,8 @@ const ManageData = () => {
         <th scope = "col" > No </th> 
         <th scope = "col" > NIK </th> 
         <th scope = "col" > Nama </th>  
-        <th scope = "col" > Action </th> 
+        <th scope = "col" > Status </th>  
+        <th scope = "col" >  </th> 
         </tr > 
         </thead> 
         <tbody > {
@@ -54,20 +55,21 @@ const ManageData = () => {
                 <th scope = "row" > { index + 1 } </th> 
                 <td> { dataktp.nik } </td> 
                 <td> { dataktp.name } </td>
+                <td> { dataktp.status } </td>
                 <td>
                 <Link to = {
                     `details/${dataktp.id}`
                 }
-                className = "btn btn-success" > <p class="position" > Details </p> </Link >
-                <button onClick = {
+                className = "btn btn-success" >  Details </Link >
+                {/* <button onClick = {
                     () => deletedataktp(user.id)
                 }
-                className = "btn btn-danger" > <i class = "bi bi-trash" > </i> </button>
+                className = "btn btn-danger" > <i class = "bi bi-trash" > </i> </button> */}
 
-                <Link to = {
+                {/* <Link to = {
                     `edit/${dataktp.id}`
                 }
-                className = "btn btn-light" > < i class = "bi bi-pen" > </i></Link > 
+                className = "btn btn-light" > < i class = "bi bi-pen" > </i></Link >  */}
                 </td> 
                  </tr>
             ))} 

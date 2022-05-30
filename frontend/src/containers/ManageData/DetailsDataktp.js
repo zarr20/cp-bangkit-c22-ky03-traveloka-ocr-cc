@@ -1,29 +1,30 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import HeaderAdmin from "../../components/Admin/header";
+import NavAdmin from "../../components/Admin/navigation";
 
 const Detailsdataktp = () => {
-const [nik, setnik] = useState("");
-const [name, setname] = useState("");
-const [tempat, settempat] = useState("");
-const [tgl_lahir, settgl_lahir] = useState("");
-const [jenis_kelamin, setjenis_kelamin] = useState("");
-const [gol_darah, setgol_darah] = useState("");
-const [alamat, setalamat] = useState("");
-const [agama, setagama] = useState("");
-const [status_perkawinan, setstatus_perkawinan] = useState("");
-const [pekerjaan, setpekerjaan] = useState("");
-const [kewarganegaraan, setkewarganegaraan] = useState("");
-const [kode_pos, setkode_pos] = useState("");
-const Navigate = useNavigate();
-const {id} = useParams();
+  const [nik, setnik] = useState("");
+  const [name, setname] = useState("");
+  const [tempat, settempat] = useState("");
+  const [tgl_lahir, settgl_lahir] = useState("");
+  const [jenis_kelamin, setjenis_kelamin] = useState("");
+  const [gol_darah, setgol_darah] = useState("");
+  const [alamat, setalamat] = useState("");
+  const [agama, setagama] = useState("");
+  const [status_perkawinan, setstatus_perkawinan] = useState("");
+  const [pekerjaan, setpekerjaan] = useState("");
+  const [kewarganegaraan, setkewarganegaraan] = useState("");
+  const [kode_pos, setkode_pos] = useState("");
+  const Navigate = useNavigate();
+  const { id } = useParams();
 
-useEffect(()=> {
+  useEffect(() => {
     getdataktpById();
-}, []);
+  }, []);
 
-
-const getdataktpById = async () => {
+  const getdataktpById = async () => {
     const response = await axios.get(`http://localhost:5000/dataktp/${id}`);
     setnik(response.data.nik);
     setname(response.data.name);
@@ -37,87 +38,169 @@ const getdataktpById = async () => {
     setpekerjaan(response.data.pekerjaan);
     setkewarganegaraan(response.data.kewarganegaraan);
     setkode_pos(response.data.kode_pos);
-}
+  };
 
   return (
-    <div className="columns mt-5 is-centered">
-        <div className="column is-hals"></div>
-        
-            <div className="field">
+    <>
+      <HeaderAdmin />
+
+      <div className="container mt-3">
+        <div className="row">
+          <NavAdmin />
+          <div class="col-sm-8">
+            <h1 className="fs-4 fw-bold"> Detail </h1>
+
+            <div>
+                Status: Pending 
+                <button>
+                    Terima
+                </button>
+                <button>
+                    Tolak
+                </button>
+            </div>
+
+            <div className="columns mt-2 is-centered">
+              <div className="column is-hals"></div>
+
+              <div className="field">
                 <label className="label">NIK</label>
                 <div className="control">
-                    <input type="text" className="input" value={nik}  placeholder="NIK"/>
+                  <input
+                    type="text"
+                    className="input"
+                    value={nik}
+                    placeholder="NIK"
+                  />
                 </div>
-            </div>
-            <div className="field">
+              </div>
+              <div className="field">
                 <label className="label">Nama</label>
                 <div className="control">
-                    <input type="text" className="input" value={name}  placeholder="Nama" />
+                  <input
+                    type="text"
+                    className="input"
+                    value={name}
+                    placeholder="Nama"
+                  />
                 </div>
-            </div>
-            <div className="field">
+              </div>
+              <div className="field">
                 <label className="label">Tempat</label>
                 <div className="control">
-                    <input type="text" className="input" value={tempat}  placeholder="Tempat" />
+                  <input
+                    type="text"
+                    className="input"
+                    value={tempat}
+                    placeholder="Tempat"
+                  />
                 </div>
-            </div>
-            <div className="field">
+              </div>
+              <div className="field">
                 <label className="label">Tanggal Lahir</label>
                 <div className="control">
-                    <input type="text" className="input" value={tgl_lahir}  placeholder="Tanggal Lahir"/>
+                  <input
+                    type="text"
+                    className="input"
+                    value={tgl_lahir}
+                    placeholder="Tanggal Lahir"
+                  />
                 </div>
-            </div>
-            <div className="field">
+              </div>
+              <div className="field">
                 <label className="label">Jenis Kelamin</label>
                 <div className="control">
-                    <input type="text" className="input" value={jenis_kelamin}  placeholder="Jenis Kelamin"/>
+                  <input
+                    type="text"
+                    className="input"
+                    value={jenis_kelamin}
+                    placeholder="Jenis Kelamin"
+                  />
                 </div>
-            </div>
-            <div className="field">
+              </div>
+              <div className="field">
                 <label className="label">Golongan Darah</label>
                 <div className="control">
-                    <input type="text" className="input" value={gol_darah}  placeholder="Golongan Darah"/>
+                  <input
+                    type="text"
+                    className="input"
+                    value={gol_darah}
+                    placeholder="Golongan Darah"
+                  />
                 </div>
-            </div>
-            <div className="field">
+              </div>
+              <div className="field">
                 <label className="label">Alamat</label>
                 <div className="control">
-                    <input type="text" className="input" value={alamat}  placeholder="Alamat"/>
+                  <input
+                    type="text"
+                    className="input"
+                    value={alamat}
+                    placeholder="Alamat"
+                  />
                 </div>
-            </div>
-            <div className="field">
+              </div>
+              <div className="field">
                 <label className="label">Agama</label>
                 <div className="control">
-                    <input type="text" className="input" value={agama}  placeholder="Agama"/>
+                  <input
+                    type="text"
+                    className="input"
+                    value={agama}
+                    placeholder="Agama"
+                  />
                 </div>
-            </div>
-            <div className="field">
+              </div>
+              <div className="field">
                 <label className="label">Status Perkawinan</label>
                 <div className="control">
-                    <input type="text" className="input" value={status_perkawinan}  placeholder="Status Perkawinan"/>
+                  <input
+                    type="text"
+                    className="input"
+                    value={status_perkawinan}
+                    placeholder="Status Perkawinan"
+                  />
                 </div>
-            </div>
-            <div className="field">
+              </div>
+              <div className="field">
                 <label className="label">Pekerjaan</label>
                 <div className="control">
-                    <input type="text" className="input" value={pekerjaan}  placeholder="Pekerjaan"/>
+                  <input
+                    type="text"
+                    className="input"
+                    value={pekerjaan}
+                    placeholder="Pekerjaan"
+                  />
                 </div>
-            </div>
-            <div className="field">
+              </div>
+              <div className="field">
                 <label className="label">Kewarganegaraan</label>
                 <div className="control">
-                    <input type="text" className="input" value={kewarganegaraan}  placeholder="Kewarganegaraan"/>
+                  <input
+                    type="text"
+                    className="input"
+                    value={kewarganegaraan}
+                    placeholder="Kewarganegaraan"
+                  />
                 </div>
-            </div>
-            <div className="field">
+              </div>
+              <div className="field">
                 <label className="label">Kode Pos</label>
                 <div className="control">
-                    <input type="text" className="input" value={kode_pos}  placeholder="Kode Pos"/>
+                  <input
+                    type="text"
+                    className="input"
+                    value={kode_pos}
+                    placeholder="Kode Pos"
+                  />
                 </div>
+              </div>
             </div>
-    </div>
-    
-  )
-}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default Detailsdataktp;
