@@ -16,4 +16,5 @@ export default User;
 
 (async() => {
     await db.sync();
+    console.log("Database connected: Data User");
 })();

@@ -4,9 +4,8 @@
     "description": "",
     "type": "module",
     "main": "index.js",
-    "homepage": "http://traveloka-frontend.messytrvck.com/",
     "scripts": {
-        "start": "node index"
+        "start": "nodemon index.js"
     },
     "keywords": [],
     "author": "",

@@ -25,4 +25,5 @@ export default dataktp;
 
 (async() => {
     await db.sync();
+    console.log("Database connected: Data KTP");
 })();
