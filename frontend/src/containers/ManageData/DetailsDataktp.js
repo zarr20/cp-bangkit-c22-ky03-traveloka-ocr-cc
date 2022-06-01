@@ -5,6 +5,8 @@ import HeaderAdmin from "../../components/Admin/header";
 import NavAdmin from "../../components/Admin/navigation";
 
 const Detailsdataktp = () => {
+  const [status, setstatus] = useState("");
+
   const [nik, setnik] = useState("");
   const [name, setname] = useState("");
   const [tempat, settempat] = useState("");
@@ -26,6 +28,9 @@ const Detailsdataktp = () => {
 
   const getdataktpById = async () => {
     const response = await axios.get(`http://localhost:5000/dataktp/${id}`);
+
+    setstatus(response.data.status);
+
     setnik(response.data.nik);
     setname(response.data.name);
     settempat(response.data.tempat);
@@ -40,6 +45,24 @@ const Detailsdataktp = () => {
     setkode_pos(response.data.kode_pos);
   };
 
+  const terimaKTP = async (id) => {
+    try {
+      await axios.patch(`http://localhost:5000/dataktp/terima/${id}`);
+      getdataktpById();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const tolakKTP = async (id) => {
+    try {
+      await axios.patch(`http://localhost:5000/dataktp/tolak/${id}`);
+      getdataktpById();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <HeaderAdmin />
@@ -50,150 +73,110 @@ const Detailsdataktp = () => {
           <div class="col-sm-8">
             <h1 className="fs-4 fw-bold"> Detail </h1>
 
-            <div>
-                Status: Pending 
-                <button>
+            <div className="row">
+              <div className="col">
+                <div className="d-flex mb-3 fw-bold">
+                  <span style={{ maxWidth: "150px", width: "100%" }}>
+                    Status
+                  </span>
+                  <span>: </span>
+                  <span>{status}</span>
+                </div>
+
+                <div className="d-flex">
+                  <span style={{ maxWidth: "150px", width: "100%" }}>NIK</span>
+                  <span>: </span>
+                  <span>{nik}</span>
+                </div>
+                <div className="d-flex">
+                  <span style={{ maxWidth: "150px", width: "100%" }}>Nama</span>
+                  <span>: </span>
+                  <span>{name}</span>
+                </div>
+
+                <div className="d-flex">
+                  <span style={{ maxWidth: "150px", width: "100%" }}>
+                    Tempat, Tanggal Lahir
+                  </span>
+                  <span>: </span>
+                  <span>
+                    {tempat}, {tgl_lahir}
+                  </span>
+                </div>
+
+                <div className="d-flex">
+                  <span style={{ maxWidth: "150px", width: "100%" }}>
+                    Jenis Kelamin
+                  </span>
+                  <span>: </span>
+                  <span>{jenis_kelamin}</span>
+                </div>
+
+                <div className="d-flex">
+                  <span style={{ maxWidth: "150px", width: "100%" }}>
+                    Golongan Darah
+                  </span>
+                  <span>: </span>
+                  <span>{gol_darah}</span>
+                </div>
+
+                <div className="d-flex">
+                  <span style={{ maxWidth: "150px", width: "100%" }}>
+                    Alamat
+                  </span>
+                  <span>: </span>
+                  <span>{alamat}</span>
+                </div>
+
+                <div className="d-flex">
+                  <span style={{ maxWidth: "150px", width: "100%" }}>
+                    Agama
+                  </span>
+                  <span>: </span>
+                  <span>{agama}</span>
+                </div>
+
+                <div className="d-flex">
+                  <span style={{ maxWidth: "150px", width: "100%" }}>
+                    Pekerjaan
+                  </span>
+                  <span>: </span>
+                  <span>{pekerjaan}</span>
+                </div>
+
+                <div className="d-flex">
+                  <span style={{ maxWidth: "150px", width: "100%" }}>
+                    Kewarganegaraan
+                  </span>
+                  <span>: </span>
+                  <span>{kewarganegaraan}</span>
+                </div>
+
+                { status == "menunggu" ?  
+                <div className="mt-3">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    onClick={() => terimaKTP(id)}
+                  >
                     Terima
-                </button>
-                <button>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    onClick={() => tolakKTP(id)}
+                  >
                     Tolak
-                </button>
-            </div>
+                  </button>
+                </div>
+                 : ""}
+              </div>
 
-            <div className="columns mt-2 is-centered">
-              <div className="column is-hals"></div>
-
-              <div className="field">
-                <label className="label">NIK</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={nik}
-                    placeholder="NIK"
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Nama</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={name}
-                    placeholder="Nama"
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Tempat</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={tempat}
-                    placeholder="Tempat"
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Tanggal Lahir</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={tgl_lahir}
-                    placeholder="Tanggal Lahir"
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Jenis Kelamin</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={jenis_kelamin}
-                    placeholder="Jenis Kelamin"
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Golongan Darah</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={gol_darah}
-                    placeholder="Golongan Darah"
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Alamat</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={alamat}
-                    placeholder="Alamat"
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Agama</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={agama}
-                    placeholder="Agama"
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Status Perkawinan</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={status_perkawinan}
-                    placeholder="Status Perkawinan"
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Pekerjaan</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={pekerjaan}
-                    placeholder="Pekerjaan"
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Kewarganegaraan</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={kewarganegaraan}
-                    placeholder="Kewarganegaraan"
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Kode Pos</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={kode_pos}
-                    placeholder="Kode Pos"
-                  />
-                </div>
+              <div className="col-5">
+                <img
+                  style={{ width: "100%" }}
+                  src="https://miro.medium.com/max/1388/1*KXxj_GFYy9CwAOG-zkGf8g.png"
+                />
               </div>
             </div>
           </div>
