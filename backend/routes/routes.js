@@ -12,7 +12,9 @@ import {
     getdataktpById,
     createdataktp,
     updatedataktp,
-    deletedataktp
+    deletedataktp,
+    tolakdataktp,
+    terimadataktp
 } from "../controllers/dataktpController.js";
 
 const router = express.Router();
@@ -28,6 +30,9 @@ router.get('/dataktp/:id', getdataktpById);
 router.post('/dataktp', createdataktp);
 router.patch('/dataktp/:id', updatedataktp);
 router.delete('/dataktp/:id', deletedataktp);
+
+router.patch('/dataktp/tolak/:id', tolakdataktp);
+router.patch('/dataktp/terima/:id', terimadataktp);
 
 
 export default router;

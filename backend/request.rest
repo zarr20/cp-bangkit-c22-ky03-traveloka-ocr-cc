@@ -1,0 +1,18 @@
+###
+PATCH http://localhost:5000/dataktp/tolak/1
+
+###
+PATCH http://localhost:5000/dataktp/terima/3
+
+###
+POST http://localhost:5000/dataktp
+
+{
+    "nik": "0123126465465466465",
+    "nama": "dzarr al ghifari",
+    "status": "diterima"
+}
+
+###
+GET http://localhost:5000/users
+

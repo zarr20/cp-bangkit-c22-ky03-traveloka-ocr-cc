@@ -32,7 +32,8 @@ export const createdataktp = async (req, res) => {
 
     const data = { ..._status, ..._body };
     await dataktp.create(data);
-    // console.log(data);
+    console.log(req);
+    console.log(data);
     res.status(201).json({ msg: "Data KTP Created" });
   } catch (error) {
     console.log(error.message);
@@ -46,7 +47,7 @@ export const terimadataktp = async (req,res) => {
     try {
         await dataktp.update({status: "diterima"}, {
             where: {
-                id: req.param.id,
+                id: req.params.id,
             },
         });
         res.status(200).json({msg: "Data KTP Diterima"});
@@ -56,10 +57,11 @@ export const terimadataktp = async (req,res) => {
 }
 
 export const tolakdataktp = async (req,res) => {
+  console.log(req);
     try {
         await dataktp.update({status: "ditolak"}, {
             where: {
-                id: req.param.id,
+                id: req.params.id,
             },
         });
         res.status(200).json({msg: "Data KTP Ditolak"});
