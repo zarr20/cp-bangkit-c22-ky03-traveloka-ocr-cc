@@ -1,5 +1,13 @@
 import dataktp from "../models/dataktpModel.js";
 
+
+export const uploadKTP = async (req,res) => {
+  // res.status(200).json( {request: req} );
+  
+  console.log(req.files);
+}
+
+
 export const getdataktp = async (req, res) => {
   try {
     const response = await dataktp.findAll();

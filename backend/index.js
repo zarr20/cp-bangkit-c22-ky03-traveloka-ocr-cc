@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import db from "./config/Database.js";
 import router from "./routes/routes.js";
+import fileupload from "express-fileupload";
+
 dotenv.config();
 const app = express();
 
@@ -13,6 +15,8 @@ try {
 } catch (error) {
     console.error(error);
 }
+
+app.use(fileupload());
 
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(cookieParser());

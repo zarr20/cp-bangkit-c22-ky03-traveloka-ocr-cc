@@ -18,7 +18,8 @@ import {
     deletedataktp,
     tolakdataktp,
     terimadataktp,
-    getdataktpByNik
+    getdataktpByNik,
+    uploadKTP
 } from "../controllers/dataktpController.js";
 
 import { verifyToken } from "../middleware/VerifyToken.js";
@@ -26,6 +27,8 @@ import { refreshToken } from "../controllers/RefreshToken.js";
 
 const router = express.Router();
 
+
+router.post('/upload/ktp', uploadKTP);
 
 router.post('/users', Register);
 router.post('/login', Login);
