@@ -1,4 +1,5 @@
 import express from "express";
+
 import {
     getUsers,
     Register,
@@ -19,7 +20,8 @@ import {
     tolakdataktp,
     terimadataktp,
     getdataktpByNik,
-    uploadKTP
+    uploadKTP,
+    countKTP
 } from "../controllers/dataktpController.js";
 
 import { verifyToken } from "../middleware/VerifyToken.js";
@@ -27,6 +29,9 @@ import { refreshToken } from "../controllers/RefreshToken.js";
 
 const router = express.Router();
 
+router.get('/dataktp/total', countKTP);
+// router.get('/dataktp/total/known', countKTPknown);
+// router.get('/dataktp/total/unknown', countKTPunknown);
 
 router.post('/upload/ktp', uploadKTP);
 
@@ -36,7 +41,6 @@ router.get('/token', refreshToken);
 router.delete('/logout', Logout);
 
 router.get('/users', verifyToken, getUsers);
-// router.get('/users', getUsers);
 router.get('/users/:id', getUserById);
 // router.post('/users', createUser);
 router.patch('/users/:id', updateUser);

@@ -11,10 +11,14 @@ const Dashboard = () => {
   const [token, setToken] = useState("");
   const [expire, setExpire] = useState("");
   const [users, setUsers] = useState([]);
+
+  const [KtpTotal, setKtpTotal] = useState([]);
+
   const history = useHistory();
 
   useEffect(() => {
     refreshToken();
+    getKTP_total();
     // getUsers();
   }, []);
 
@@ -61,6 +65,12 @@ const Dashboard = () => {
     setUsers(response.data);
   };
 
+  const getKTP_total = async () => {
+      const response = await axios.get("http://localhost:5000/dataktp/total");
+      console.log(response.data.results);
+      setKtpTotal(response.data.results);
+  };
+
   return (
     <div>
       <HeaderAdmin />
@@ -71,17 +81,21 @@ const Dashboard = () => {
 
           <div class="col-sm-8">
             <div className="d-flex gap-3">
-              <div className="shadow-sm p-3 mb-5 rounded px-4 bg-dark text-white">
-                <span className="fs-3 fw-bold ">{expire}</span>
+              <div className="w-25 shadow-sm p-3 mb-5 rounded px-4 bg-dark text-white">
+                <span className="fs-3 fw-bold ">{KtpTotal.known}</span>
                 <div>identified this month</div>
               </div>
-              <div className="shadow-sm p-3 mb-5  rounded px-4 bg-danger text-white">
-                <span className="fs-3 fw-bold ">5000</span>
+              <div className="w-25 shadow-sm p-3 mb-5  rounded px-4 bg-danger text-white">
+                <span className="fs-3 fw-bold ">{KtpTotal.unknown}</span>
                 <div>not identified</div>
               </div>
-              <div className="shadow-sm p-3 mb-5 bg-body rounded px-4">
-                <span className="fs-3 fw-bold">5000</span>
+              <div className="w-25 shadow-sm p-3 mb-5 bg-body rounded px-4">
+                <span className="fs-3 fw-bold">{KtpTotal.all}</span>
                 <div>identification request</div>
+              </div>
+              <div className="w-25 shadow-sm p-3 mb-5 bg-body rounded px-4">
+                <span className="fs-3 fw-bold">{KtpTotal.rejected}</span>
+                <div>rejected</div>
               </div>
             </div>
 

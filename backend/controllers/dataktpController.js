@@ -1,12 +1,38 @@
 import dataktp from "../models/dataktpModel.js";
 
+export const countKTP = async (req, res) => {
+  try {
 
-export const uploadKTP = async (req,res) => {
+    const data = {
+      all: await dataktp.count({
+        // where: {status: 'diterima'},
+      }),
+      known: await dataktp.count({
+        where: {status: 'diterima'},
+      }),
+      unknown: await dataktp.count({
+        where: {status: 'menunggu'},
+      }),
+      rejected: await dataktp.count({
+        where: {status: 'ditolak'},
+      })
+    }
+
+    // const response = await dataktp.count({
+    //   where: {status: 'diterima'},
+    // });
+    res.status(200).json({results: data});
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+export const uploadKTP = async (req, res) => {
   // res.status(200).json( {request: req} );
-  
-  console.log(req.files);
-}
 
+  console.log(req.files);
+};
 
 export const getdataktp = async (req, res) => {
   try {
@@ -49,7 +75,7 @@ export const createdataktp = async (req, res) => {
     const _status = { status: "menunggu" };
     const _body = req.body;
 
-    delete _body['status']; // semua data ktp defaultnya harus pending
+    delete _body["status"]; // semua data ktp defaultnya harus pending
 
     const data = { ..._status, ..._body };
     await dataktp.create(data);
@@ -64,32 +90,38 @@ export const createdataktp = async (req, res) => {
 // Terima dataktp
 // Tolak dataktp
 
-export const terimadataktp = async (req,res) => {
-    try {
-        await dataktp.update({status: "diterima"}, {
-            where: {
-                id: req.params.id,
-            },
-        });
-        res.status(200).json({msg: "Data KTP Diterima"});
-    } catch (error) {
-        console.log(error.message);
-    }
-}
+export const terimadataktp = async (req, res) => {
+  try {
+    await dataktp.update(
+      { status: "diterima" },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+    res.status(200).json({ msg: "Data KTP Diterima" });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
-export const tolakdataktp = async (req,res) => {
+export const tolakdataktp = async (req, res) => {
   console.log(req);
-    try {
-        await dataktp.update({status: "ditolak"}, {
-            where: {
-                id: req.params.id,
-            },
-        });
-        res.status(200).json({msg: "Data KTP Ditolak"});
-    } catch (error) {
-        console.log(error.message);
-    }
-}
+  try {
+    await dataktp.update(
+      { status: "ditolak" },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+    res.status(200).json({ msg: "Data KTP Ditolak" });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 export const updatedataktp = async (req, res) => {
   try {
