@@ -1,8 +1,25 @@
-import React from 'react'
-
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link, NavLink } from 'react-router-dom'
 
+
+
 function NavAdmin() {
+    const Navigate = useNavigate();
+
+    const Logout = async () => {
+        try {
+            localStorage.removeItem("token");
+          await axios.delete("http://localhost:5000/logout");
+          
+          Navigate("/login");
+          
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
     return (
         <div className="sideNav col-sm-3">
             <NavLink exact={true} activeClassName='active' to='/dashboard'>
@@ -17,8 +34,11 @@ function NavAdmin() {
                 <i class="bi bi-people me-2"></i> Manage User
             </NavLink>
 
-            <Link to='/auth=logout'><span className="align-items-center" style={{ color: "red" }}><i class="bi bi-box-arrow-right me-2"></i>Logout</span></Link>
-        
+            <a  onClick={Logout}>
+              <span  style={{ color: "red" }}>
+                <i class="bi bi-box-arrow-right me-2"></i>Logout
+              </span>
+            </a>
               
         </div>
     )

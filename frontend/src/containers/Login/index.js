@@ -1,88 +1,108 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import { Navigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
+import { update } from "../../features/authSlice";
+
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  // const [token, setToken] = useState("");
+  const [msg, setMsg] = useState("");
+  const Navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  // const { isLoggedIn } = useSelector(state => state.auth);
+  // useEffect(() => {
+  //   isLoggedIn === true ? Navigate("/dashboard"): "";
+  // }, []);
+  // console.log(isLoggedIn);
 
-  // Data Palsu
-  const database = [
-    {
-      username: "admin",
-      password: "admin"
-    },
-    {
-      username: "user",
-      password: "user"
+  useEffect(() => {
+    if(localStorage.getItem('token')) {
+      Navigate("/dashboard");
     }
-  ];
+}, []);
 
-  // const errors = {
-  //   uname: "Invalid username or password",
-  //   pass: "Invalid username or password"
-  // };
-
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="alert alert-danger" role="alert">
-        {errorMessages.message}
-      </div>
-    );
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    var { uname, pass } = document.forms[0];
-    const userData = database.find((user) => user.username === uname.value);
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // console.log('password salah');
-        setErrorMessages({ name: "", message: "Invalid username or password" });
-
-      } else {
-        // console.log('berhasil');
-        setIsSubmitted(true);
-
+  const Auth = async (e) => {
+    e.preventDefault();
+    try {
+      await axios
+      .post("http://localhost:5000/login", {
+        email: email,
+        password: Password,
+      })
+      .then((res) =>  {
+        localStorage.setItem("token", JSON.stringify(res.data.accessToken));
+      });
+      Navigate("/dashboard");
+      
+    } catch (error) {
+      if (error.response) {
+        setMsg(error.response.data.msg);
       }
-    } else {
-      // console.log('not found');
-      setErrorMessages({ name: "", message: "Invalid username or password" });
     }
   };
 
-  const renderLogin = (
-    <div className='d-flex aligns-item-center vh-100'>
-      <div className="m-auto text-center" style={{ maxWidth: "350px", width: "100%" }}>
-        <form onSubmit={handleSubmit}>
-          <img src="/logo-identify-purple.svg" className="mb-4" style={{ "max-height": "45px" }} />
-          {renderErrorMessage("")}
-          <div className='form-floating '>
-            <input className='form-control rounded-top rounded-0 ' style={{ marginBottom: "-1px" }} name="uname" />
+  return (
+    <div className="d-flex aligns-item-center vh-100">
+     
+
+      <div
+        className="m-auto text-center"
+        style={{ maxWidth: "350px", width: "100%" }}
+      >
+        <form onSubmit={Auth}>
+         
+          <img
+            src="/logo-identify-purple.svg"
+            className="mb-4"
+            style={{ maxHeight: "45px" }}
+          />
+          <div className="form-floating ">
+            <input
+              className="form-control rounded-top rounded-0 "
+              name="uname"
+              style={{ marginBottom: "-1px" }}
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <label for="floatingInput">Username</label>
           </div>
-          <div className='form-floating mb-3'>
-            <input className='form-control rounded-bottom rounded-0' name="pass" />
+          <div className="form-floating mb-3">
+            <input
+              className="form-control rounded-bottom rounded-0"
+              name="pass"
+              type="password"
+              value={Password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <label for="floatingInput">Password</label>
           </div>
-          
-          <button type="submit" class=" w-100  btn btn-outline-dark fw-bold">Login</button>
+
+          <button type="submit" className=" w-100  btn btn-outline-dark fw-bold">
+            Login
+          </button>
+
+          <p className="py-2 has-text-centered">{msg}</p>
         </form>
 
-        <div className='d-flex justify-content-center mt-5'>
-          <img src="/assets/img/bangkit-logo.png" style={{ "max-height": "35px" }} />
-          <img src="/assets/img/traveloka-logo.png" style={{ "max-height": "35px" }} />
+        <div className="d-flex justify-content-center mt-5">
+          <img
+            src="/assets/img/bangkit-logo.png"
+            style={{ maxHeight: "35px" }}
+          />
+          <img
+            src="/assets/img/traveloka-logo.png"
+            style={{ maxHeight: "35px" }}
+          />
         </div>
       </div>
     </div>
   );
+};
 
-  return (
-    <div>
-      {isSubmitted ? <Navigate replace to="/dashboard" /> : renderLogin}
-    </div>
-  )
-}
-
-export default Login
+export default Login;

@@ -22,6 +22,19 @@ export const getdataktpById = async (req, res) => {
   }
 };
 
+export const getdataktpByNik = async (req, res) => {
+  try {
+    const response = await dataktp.findOne({
+      where: {
+        nik: req.params.id,
+      },
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 export const createdataktp = async (req, res) => {
   try {
     // await dataktp.create(req.body);

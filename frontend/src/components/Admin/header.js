@@ -1,22 +1,46 @@
-import React from 'react'
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function HeaderAdmin() {
+  const Navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
+
+
+  useEffect(() => {
+    if (!token) {
+      Navigate("/login");
+    }
+  }, []);
+
   return (
-    <header style={{ background: "#4c0bce", boxShadow: "#0000002e 0px 3px 4px", color: "white" }}>
-      <div className="container d-flex " style={{ height: "60px", "justify-content": "space-between", "align-items": "center" }}>
+    <header
+      style={{
+        background: "#4c0bce",
+        boxShadow: "#0000002e 0px 3px 4px",
+        color: "white",
+      }}
+    >
+      <div
+        className="container d-flex "
+        style={{
+          height: "60px",
+          "justify-content": "space-between",
+          "align-items": "center",
+        }}
+      >
         <div id="logo">
           <img src="/logo-identify.svg" style={{ "max-height": "40px" }} />
         </div>
         <div id="navigation" className="d-flex">
           <div>
-
+          
           </div>
-
-
         </div>
       </div>
     </header>
-  )
+  );
 }
 
-export default HeaderAdmin
+export default HeaderAdmin;
