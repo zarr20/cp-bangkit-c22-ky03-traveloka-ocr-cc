@@ -21,6 +21,7 @@ export const Register = async(req, res) => {
 }
 
 export const Login = async(req, res) => {
+    // console.log(req);
     try {
         const user = await User.findAll({
             where: {
@@ -52,7 +53,7 @@ export const Login = async(req, res) => {
         });
         res.json({ accessToken });
     } catch (error) {
-        res.status(404).json({ msg: "Wrong" });
+        res.status(404).json({ msg: "Wrong Email" });
     }
 }
 

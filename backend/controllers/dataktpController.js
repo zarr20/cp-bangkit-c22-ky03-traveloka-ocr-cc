@@ -2,10 +2,8 @@ import dataktp from "../models/dataktpModel.js";
 
 export const countKTP = async (req, res) => {
   try {
-
     const data = {
       all: await dataktp.count({
-        // where: {status: 'diterima'},
       }),
       known: await dataktp.count({
         where: {status: 'diterima'},
@@ -17,21 +15,10 @@ export const countKTP = async (req, res) => {
         where: {status: 'ditolak'},
       })
     }
-
-    // const response = await dataktp.count({
-    //   where: {status: 'diterima'},
-    // });
     res.status(200).json({results: data});
   } catch (error) {
     console.log(error.message);
   }
-};
-
-
-export const uploadKTP = async (req, res) => {
-  // res.status(200).json( {request: req} );
-
-  console.log(req.files);
 };
 
 export const getdataktp = async (req, res) => {
