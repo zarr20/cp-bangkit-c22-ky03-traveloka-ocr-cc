@@ -31,15 +31,20 @@ export const Register = async(req, res) => {
 }
 
 export const Login = async(req, res) => {
-    // console.log(req);
+   
     try {
+        
         const user = await User.findAll({
             where: {
                 email: req.body.email
             }
         });
-        const match = await bcrypt.compare(req.body.password, user[0].Password);
 
+        // console.log(user[0].password);
+        // console.log(user[0].dataValues.Password);
+        const match = await bcrypt.compare(req.body.password, user[0].dataValues.Password);
+        
+        
         // const match = await req.body.password === user[0].password ? true : false;
 
         if (!match) return res.status(400).json({ msg: "Wrong Password" });
