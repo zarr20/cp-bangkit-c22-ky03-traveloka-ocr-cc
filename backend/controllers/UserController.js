@@ -1,7 +1,17 @@
 import User from "../models/UserModel.js";
-
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+
+export const getUsers = async(req, res) => {
+    try {
+        const users = await User.findAll({
+            attributes: ['id', 'name', 'email']
+        });
+        res.json(users);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 export const Register = async(req, res) => {
     const { name, email, password, confPassword } = req.body;
@@ -12,7 +22,7 @@ export const Register = async(req, res) => {
         await User.create({
             name: name,
             email: email,
-            Password: hashPassword
+            password: hashPassword
         });
         res.json({ msg: "Register Berhasil" });
     } catch (error) {
@@ -77,15 +87,6 @@ export const Logout = async(req, res) => {
     return res.sendStatus(200);
 }
 
-
-export const getUsers = async(req, res) => {
-    try {
-        const response = await User.findAll();
-        res.status(200).json(response);
-    } catch (error) {
-        console.log(error.message);
-    }
-}
 
 export const getUserById = async(req, res) => {
     try {

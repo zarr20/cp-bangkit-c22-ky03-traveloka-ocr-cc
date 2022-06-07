@@ -13,6 +13,9 @@ const User = db.define('users', {
     Password: {
         type: DataTypes.STRING
     },
+    telepon: {
+        type: DataTypes.STRING
+    },
     refresh_token: {
         type: DataTypes.TEXT
     }
