@@ -21,10 +21,10 @@ POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-    "name": "M fikri",
-    "email": "test@gmail.com",
-    "password": "123456",
-    "confPassword": "123456"
+    "name": "edita",
+    "email": "editaaulia@gmail.com",
+    "password": "edita123",
+    "confPassword": "edita123"
 }
 
 ###
@@ -32,8 +32,8 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "email" : "test@gmail.com",
-    "password": "123456"
+    "email" : "editaaulia@gmail.com",
+    "password": "edita123"
 }
 
 ###
@@ -41,3 +41,21 @@ GET http://localhost:5000/token
 
 ###
 DELETE http://localhost:5000/logout
+
+
+###
+GET http://localhost:5000/admin
+
+###
+GET http://localhost:5000/admin/1
+
+###
+POST http://localhost:5000/admin
+Content-Type: application/json
+
+{
+    "name": "edita",
+    "email": "test@gmail.com",
+    "password": "123456",
+    "confPassword": "123456"
+}

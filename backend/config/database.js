@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 
-const db = new Sequelize('ocr_trvlk', 'root', '', {
+const db = new Sequelize('db_new', 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
 

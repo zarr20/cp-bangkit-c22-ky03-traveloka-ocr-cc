@@ -1,22 +1,19 @@
-
-
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { useNavigate as useHistory } from "react-router-dom";
-// import { _getUsers } from "../../API/dataktp/getUsers";
+// import { _getadmin } from "../../API/dataktp/getadmin";
 import axios from "axios";
 import HeaderAdmin from "../../components/Admin/header";
 import NavAdmin from "../../components/Admin/navigation";
 import jwt_decode from "jwt-decode";
 
-const ManageUser = () => {
-  // const [users, setUser] = useState([]);
+const Manageadmin = () => {
+  // const [admin, setadmin] = useState([]);
   const [name, setName] = useState("");
   const [token, setToken] = useState("");
   const [expire, setExpire] = useState("");
-  const [users, setUsers] = useState([]);
+  const [admin, setadmin] = useState([]);
   const history = useHistory();
 
 
@@ -57,26 +54,26 @@ const ManageUser = () => {
 
   useEffect(() => {
     refreshToken();
-    _getUsers();
+    _getadmin();
   }, []);
 
   // useEffect(() => {
-  //   _getUsers();
+  //   _getadmin();
   // }, []);
 
-  const _getUsers = async () => {
-    const response = await axiosJWT.get("http://localhost:5000/users", {
+  const _getadmin = async () => {
+    const response = await axiosJWT.get("http://localhost:5000/admin", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    setUsers(response.data);
+    setadmin(response.data);
   };
 
-  const deleteUser = async (id) => {
+  const deleteadmin = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/users/${id}`);
-      _getUsers();
+      await axios.delete(`http://localhost:5000/admin/${id}`);
+      _getadmin();
     } catch (error) {
       console.log(error);
     }
@@ -91,7 +88,7 @@ const ManageUser = () => {
           <NavAdmin />
           <div class="col-sm-8 ">
               <div className="d-flex gap-3">
-              <h1 className="fs-4 fw-bold"> Manage User  {name}</h1>
+              <h1 className="fs-4 fw-bold"> Manage Admin  {name}</h1>
             <Link to={`add`} className="btn btn-primary">
                 {" "}
                 <i class="bi bi-person-plus me-3"> </i> Add
@@ -113,24 +110,24 @@ const ManageUser = () => {
                 </thead>
                 <tbody>
                   {" "}
-                  {users.map((user, index) => (
+                  {admin.map((admin, index) => (
                     <tr>
                       <th scope="row"> {index + 1} </th>
-                      <td> {user.name} </td>
-                      <td> {user.email} </td>
-                      <td> {user.tlp} </td>
+                      <td> {admin.name} </td>
+                      <td> {admin.email} </td>
+                      <td> {admin.tlp} </td>
                       <td>
 
                           <div className="d-flex gap-2">
                           <button
-                          onClick={() => deleteUser(user.id)}
+                          onClick={() => deleteadmin(admin.id)}
                           className="btn btn-danger"
                         >
                           {" "}
                           <i class="bi bi-trash"> </i>
                         </button>
 
-                        <Link to={`edit/${user.id}`} className="btn btn-light">
+                        <Link to={`edit/${admin.id}`} className="btn btn-light">
                           {" "}
                           <i class="bi bi-pen"> </i>
                         </Link>
@@ -152,7 +149,6 @@ const ManageUser = () => {
                                     <button className="btn btn-danger"><i class="bi bi-trash"></i></button>
                                     <button className="btn btn-light"><i class="bi bi-pen"></i></button>
                                   </div>
-
                                 </td>
                               </tr> */}
                 </tbody>
@@ -165,4 +161,4 @@ const ManageUser = () => {
   );
 };
 
-export default ManageUser;
+export default Manageadmin;

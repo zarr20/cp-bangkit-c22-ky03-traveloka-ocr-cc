@@ -10,7 +10,7 @@ const Dashboard = () => {
   const [name, setName] = useState("");
   const [token, setToken] = useState("");
   const [expire, setExpire] = useState("");
-  const [users, setUsers] = useState([]);
+  const [admin, setadmin] = useState([]);
 
   const [KtpTotal, setKtpTotal] = useState([]);
 
@@ -19,7 +19,7 @@ const Dashboard = () => {
   useEffect(() => {
     refreshToken();
     getKTP_total();
-    // getUsers();
+    // getadmin();
   }, []);
 
   const refreshToken = async () => {
@@ -56,13 +56,13 @@ const Dashboard = () => {
     }
   );
 
-  const getUsers = async () => {
-    const response = await axiosJWT.get("http://localhost:5000/users", {
+  const getadmin = async () => {
+    const response = await axiosJWT.get("http://localhost:5000/admin", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    setUsers(response.data);
+    setadmin(response.data);
   };
 
   const getKTP_total = async () => {

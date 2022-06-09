@@ -62,7 +62,7 @@ const ManageData = () => {
                 }
                 className = "btn btn-success" >  Details </Link >
                 {/* <button onClick = {
-                    () => deletedataktp(user.id)
+                    () => deletedataktp(admin.id)
                 }
                 className = "btn btn-danger" > <i class = "bi bi-trash" > </i> </button> */}
 

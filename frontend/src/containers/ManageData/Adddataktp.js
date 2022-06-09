@@ -43,7 +43,7 @@ const Adddataktp = () => {
         return (
             <div className="columns mt-5 is-centered">
                 <div className="column is-hals"></div>
-                <form onSubmit={saveUser}>
+                <form onSubmit={saveadmin}>
                     <div className="field">
                         <label className="label">NIK</label>
                         <div className="control">
@@ -71,55 +71,49 @@ const Adddataktp = () => {
                     <div className="field">
                         <label className="label">Jenis Kelamin</label>
                         <div className="control">
-                            <input type="text" className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name"/>
+                            <input type="text" className="input" value={jenis_kelamin} onChange={(e) => setjenis_kelamin(e.target.value)} placeholder="Jenis Kelamin"/>
                         </div>
                     </div>
                     <div className="field">
                         <label className="label">Golongan Darah</label>
                         <div className="control">
-                            <input type="text" className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name"/>
+                            <input type="text" className="input" value={gol_darah} onChange={(e) => setgol_darah(e.target.value)} placeholder="Golongan Darah"/>
                         </div>
                     </div>
                     <div className="field">
                         <label className="label">Alamat</label>
                         <div className="control">
-                            <input type="text" className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name"/>
+                            <input type="text" className="input" value={alamat} onChange={(e) => setalamat(e.target.value)} placeholder="Alamat"/>
                         </div>
                     </div>
                     <div className="field">
                         <label className="label">Agama</label>
                         <div className="control">
-                            <input type="text" className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name"/>
+                            <input type="text" className="input" value={agama} onChange={(e) => setagama(e.target.value)} placeholder="Agama"/>
                         </div>
                     </div>
                     <div className="field">
                         <label className="label">Status Perkawinan</label>
                         <div className="control">
-                            <input type="text" className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name"/>
+                            <input type="text" className="input" value={status_perkawinan} onChange={(e) => setstatus_perkawinan(e.target.value)} placeholder="Status Perkawinan"/>
                         </div>
                     </div>
                     <div className="field">
                         <label className="label">Pekerjaan</label>
                         <div className="control">
-                            <input type="text" className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name"/>
+                            <input type="text" className="input" value={pekerjaan} onChange={(e) => setpekerjaan(e.target.value)} placeholder="Pekerjaan"/>
                         </div>
                     </div>
                     <div className="field">
                         <label className="label">Kewarganegaraan</label>
                         <div className="control">
-                            <input type="text" className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name"/>
+                            <input type="text" className="input" value={kewarganegaraan} onChange={(e) => setkewarganegaraan(e.target.value)} placeholder="Kewarganegaraan"/>
                         </div>
                     </div>
                     <div className="field">
                         <label className="label">Kode Pos</label>
                         <div className="control">
-                            <input type="text" className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name"/>
-                        </div>
-                    </div>
-                    <div className="field">
-                        <label className="label">Name</label>
-                        <div className="control">
-                            <input type="text" className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name"/>
+                            <input type="text" className="input" value={kode_pos} onChange={(e) => setkode_pos(e.target.value)} placeholder="Kode Pos"/>
                         </div>
                     </div>
                     <div className="field">
