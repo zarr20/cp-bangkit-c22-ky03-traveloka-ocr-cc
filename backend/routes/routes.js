@@ -1,81 +1,96 @@
 import express from "express";
 
 import {
-    getUsers,
-    Register,
-    Login,
-    getUserById,
-    createUser,
-    updateUser,
-    deleteUser,
-    Logout
-} from "../controllers/UserController.js";
+  getUserById,
+  updateUser,
+  deleteUser,
+  registerUser,
+  loginUser,
+  logoutUser,
+  getUser,
+} from "../controllers/User.js";
 
 import {
-    getdataktp,
-    getdataktpById,
-    createdataktp,
-    updatedataktp,
-    deletedataktp,
-    tolakdataktp,
-    terimadataktp,
-    getdataktpByNik,
-    countKTP
-} from "../controllers/dataktpController.js";
+  countKTP,
+  getKtp,
+  getKtpById,
+  getKtpByNik,
+  insertKtp,
+  deleteKtp,
+  rejectKtp,
+  approveKtp,
+} from "../controllers/Ktp.js";
+
+import {
+  deleteAdmin,
+  getAdmin,
+  getAdminById,
+  loginAdmin,
+  logoutAdmin,
+  registerAdmin,
+  updateAdmin,
+} from "../controllers/Admin.js";
 
 import { verifyToken } from "../middleware/VerifyToken.js";
 import { refreshToken } from "../controllers/RefreshToken.js";
-import { uploadKTP } from "../controllers/UploadFileController.js";
+import { uploadKTP } from "../controllers/UploadFile.js";
 
-import path from "path";
-const __dirname = path.resolve();
-
+// import path from "path";
+// const __dirname = path.resolve();
 
 const router = express.Router();
 
-router.get('/dataktp/total', countKTP);
+// router.post('/upload/ktp', function(req, res, next) {
+//     console.log(req.files);
+//     if (!req.files) {
+//         return res.status(400).send("No files");
+//     }
 
+//     const file = req.files.ktp;
+//     const path = __dirname + "/uploads/" + file.name;
 
-router.post('/upload/ktp', function (req, res, next) {
-  console.log(req.files);
-  console.log(req.body);
-  if (!req.files) {
-    return res.status(400).send("No files");
-  }
+//     file.mv(path, (err) => {
+//         if (err) {
+//             return res.status(500).send(err);
+//         }
+//         return res.send({ status: "success", path: path });
+//     });
 
-  const file = req.files.ktp;
-  const path = __dirname + "/uploads/" + file.name;
+// });
 
-  file.mv(path, (err) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
-    return res.send({ status: "success", path: path });
-  });
+router.get("/kyc/info", countKTP);
 
-});
+router.get("/ktp", getKtp);
+router.get("/ktp/:id", getKtpByNik);
+router.get("/ktp/id/:id", getKtpById);
+router.post("/ktp", insertKtp);
+// router.patch('/ktp/:id', updatedataktp);
+router.delete("/ktp/:id", deleteKtp);
+router.patch("/ktp/reject/:id", rejectKtp);
+router.patch("/ktp/approve/:id", approveKtp);
 
-router.post('/users', Register);
-router.post('/login', Login);
-router.get('/token', refreshToken);
-router.delete('/logout', Logout);
+router.post("/upload/ktp", uploadKTP);
+// upload ktp akan me-return path gambar untuk pengecekan ocr
 
-router.get('/users', verifyToken, getUsers);
-router.get('/users/:id', getUserById);
-// router.post('/users', createUser);
-router.patch('/users/:id', updateUser);
-router.delete('/users/:id', deleteUser);
-
-router.get('/dataktp', getdataktp);
-router.get('/dataktp/:id', getdataktpById);
-router.get('/dataktp/nik/:id', getdataktpByNik);
-
-router.post('/dataktp', createdataktp);
-router.patch('/dataktp/:id', updatedataktp);
-router.delete('/dataktp/:id', deletedataktp);
-
-router.patch('/dataktp/tolak/:id', tolakdataktp);
-router.patch('/dataktp/terima/:id', terimadataktp);
-
+// User & Admin Routes
+// get token
+router.get("/auth/token", refreshToken);
+// User Routes
+router.post("/auth/register", registerUser);
+router.post("/auth/login", loginUser);
+router.delete("/auth/logout", logoutUser);
+router.get("/users", verifyToken, getUser);
+router.get("/users/:id", getUserById);
+router.patch("/users/:id", updateUser);
+router.delete("/users/:id", deleteUser);
+// Admin Routes
+router.get("/admin", verifyToken, getAdmin);
+router.get("/admin/:id", getAdminById);
+router.post("/admin", registerAdmin);
+router.post("/admin/login", loginAdmin);
+router.delete("/admin/logout", logoutAdmin);
+router.patch("/admin/:id", updateAdmin);
+router.delete("/admin/:id", deleteAdmin);
+// END - User & Admin Routes
 
 export default router;

@@ -10,7 +10,7 @@ const User = db.define('users', {
     email: {
         type: DataTypes.STRING
     },
-    Password: {
+    password: {
         type: DataTypes.STRING
     },
     // telepon: {

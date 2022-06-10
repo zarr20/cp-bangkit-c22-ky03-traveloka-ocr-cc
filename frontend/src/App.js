@@ -1,15 +1,13 @@
 import React, { createContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./assets/css/styles.css";
-import { Dashboard, Login, ManageData, ManageUser } from "./containers";
-import AddUser from "./containers/ManageUser/AddUser";
-import EditUser from "./containers/ManageUser/EditUser";
+import { Dashboard, Login, ManageData, ManageAdmin } from "./containers";
+import Addadmin from "./containers/ManageAdmin/Addadmin";
+import Editadmin from "./containers/ManageAdmin/Editadmin";
 import Editdataktp from "./containers/ManageData/EditDataktp";
 import Detailsdataktp from "./containers/ManageData/DetailsDataktp";
 
-
 function App() {
- 
   return (
     <BrowserRouter>
       <Routes>
@@ -17,9 +15,9 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/manage-data" element={<ManageData />} />
-        <Route exact path="/manage-user" element={<ManageUser />} />
-        <Route exact path="manage-user/add" element={<AddUser />} />
-        <Route exact path="manage-user/edit/:id" element={<EditUser />} />
+        <Route exact path="/manage-admin" element={<ManageAdmin />} />
+        <Route exact path="manage-admin/add" element={<Addadmin />} />
+        <Route exact path="manage-admin/edit/:id" element={<Editadmin />} />
         <Route exact path="manage-data/edit/:id" element={<Editdataktp />} />
         <Route
           exact

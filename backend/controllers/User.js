@@ -1,23 +1,32 @@
-import User from "../models/UserModel.js";
-import bcrypt from "bcrypt";
+import User from "../models/userModel.js";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-export const getUsers = async(req, res) => {
+export const getUser = async(req, res) => {
     try {
         const users = await User.findAll({
             attributes: ['id', 'name', 'email']
         });
-        res.json(users);
+        res.json(user);
     } catch (error) {
         console.log(error);
     }
 }
 
-export const Register = async(req, res) => {
+// export const createUser = async(req, res) => {
+//     try {
+//         await User.create(req.body);
+//         res.status(201).json({ msg: "User Created" });
+//     } catch (error) {
+//         console.log(error.message);
+//     }
+// }
+
+export const registerUser = async(req, res) => {
     const { name, email, password, confPassword } = req.body;
     if (password !== confPassword) return res.status(400).json({ msg: "Password dan Confirm Password tidak cocok" });
-    const salt = await bcrypt.genSalt();
-    const hashPassword = await bcrypt.hash(password, salt);
+    const salt = await bcrypt.genSaltSync();
+    const hashPassword = await bcrypt.hashSync(password, salt);
     try {
         await User.create({
             name: name,
@@ -30,7 +39,7 @@ export const Register = async(req, res) => {
     }
 }
 
-export const Login = async(req, res) => {
+export const loginUser = async(req, res) => {
    
     try {
         
@@ -42,7 +51,7 @@ export const Login = async(req, res) => {
 
         // console.log(user[0].password);
         // console.log(user[0].dataValues.Password);
-        const match = await bcrypt.compare(req.body.password, user[0].dataValues.Password);
+        const match = await bcrypt.compareSync(req.body.password, user[0].dataValues.Password);
         
         
         // const match = await req.body.password === user[0].password ? true : false;
@@ -73,7 +82,7 @@ export const Login = async(req, res) => {
 }
 
 
-export const Logout = async(req, res) => {
+export const logoutUser = async(req, res) => {
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) return res.sendStatus(204);
     const user = await User.findAll({
@@ -101,15 +110,6 @@ export const getUserById = async(req, res) => {
             }
         });
         res.status(200).json(response);
-    } catch (error) {
-        console.log(error.message);
-    }
-}
-
-export const createUser = async(req, res) => {
-    try {
-        await User.create(req.body);
-        res.status(201).json({ msg: "User Created" });
     } catch (error) {
         console.log(error.message);
     }

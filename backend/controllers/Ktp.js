@@ -1,4 +1,4 @@
-import dataktp from "../models/dataktpModel.js";
+import dataktp from "../models/ktpModel.js";
 
 export const countKTP = async (req, res) => {
   try {
@@ -6,7 +6,7 @@ export const countKTP = async (req, res) => {
       all: await dataktp.count({
       }),
       known: await dataktp.count({
-        where: {status: 'diterima'},
+        where: {status: 'disetujui'},
       }),
       unknown: await dataktp.count({
         where: {status: 'menunggu'},
@@ -21,7 +21,7 @@ export const countKTP = async (req, res) => {
   }
 };
 
-export const getdataktp = async (req, res) => {
+export const getKtp = async (req, res) => {
   try {
     const response = await dataktp.findAll();
     res.status(200).json(response);
@@ -30,7 +30,7 @@ export const getdataktp = async (req, res) => {
   }
 };
 
-export const getdataktpById = async (req, res) => {
+export const getKtpById = async (req, res) => {
   try {
     const response = await dataktp.findOne({
       where: {
@@ -43,7 +43,7 @@ export const getdataktpById = async (req, res) => {
   }
 };
 
-export const getdataktpByNik = async (req, res) => {
+export const getKtpByNik = async (req, res) => {
   try {
     const response = await dataktp.findOne({
       where: {
@@ -56,7 +56,7 @@ export const getdataktpByNik = async (req, res) => {
   }
 };
 
-export const createdataktp = async (req, res) => {
+export const insertKtp = async (req, res) => {
   try {
     // await dataktp.create(req.body);
     const _status = { status: "menunggu" };
@@ -68,32 +68,29 @@ export const createdataktp = async (req, res) => {
     await dataktp.create(data);
     console.log(req);
     console.log(data);
-    res.status(201).json({ msg: "Data KTP Created" });
+    res.status(201).json({ msg: "Data saved on Database" });
   } catch (error) {
     console.log(error.message);
   }
 };
 
-// Terima dataktp
-// Tolak dataktp
-
-export const terimadataktp = async (req, res) => {
+export const approveKtp = async (req, res) => {
   try {
     await dataktp.update(
-      { status: "diterima" },
+      { status: "disetujui" },
       {
         where: {
           id: req.params.id,
         },
       }
     );
-    res.status(200).json({ msg: "Data KTP Diterima" });
+    res.status(200).json({ msg: "Ktp Approved" });
   } catch (error) {
     console.log(error.message);
   }
 };
 
-export const tolakdataktp = async (req, res) => {
+export const rejectKtp = async (req, res) => {
   console.log(req);
   try {
     await dataktp.update(
@@ -104,26 +101,26 @@ export const tolakdataktp = async (req, res) => {
         },
       }
     );
-    res.status(200).json({ msg: "Data KTP Ditolak" });
+    res.status(200).json({ msg: "Ktp Rejected" });
   } catch (error) {
     console.log(error.message);
   }
 };
 
-export const updatedataktp = async (req, res) => {
-  try {
-    await dataktp.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    });
-    res.status(200).json({ msg: "Data KTP Updated" });
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+// export const updatedataktp = async (req, res) => {
+//   try {
+//     await dataktp.update(req.body, {
+//       where: {
+//         id: req.params.id,
+//       },
+//     });
+//     res.status(200).json({ msg: "Data KTP Updated" });
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };
 
-export const deletedataktp = async (req, res) => {
+export const deleteKtp = async (req, res) => {
   try {
     await dataktp.destroy({
       where: {

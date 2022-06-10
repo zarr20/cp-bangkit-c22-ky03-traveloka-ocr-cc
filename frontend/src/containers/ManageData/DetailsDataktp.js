@@ -27,7 +27,7 @@ const Detailsdataktp = () => {
   }, []);
 
   const getdataktpById = async () => {
-    const response = await axios.get(`http://localhost:5000/dataktp/${id}`);
+    const response = await axios.get(`http://localhost:5000/ktp/id/${id}`);
 
     setstatus(response.data.status);
 
@@ -47,7 +47,7 @@ const Detailsdataktp = () => {
 
   const terimaKTP = async (id) => {
     try {
-      await axios.patch(`http://localhost:5000/dataktp/terima/${id}`);
+      await axios.patch(`http://localhost:5000/ktp/approve/${id}`);
       getdataktpById();
     } catch (error) {
       console.log(error);
@@ -56,7 +56,7 @@ const Detailsdataktp = () => {
 
   const tolakKTP = async (id) => {
     try {
-      await axios.patch(`http://localhost:5000/dataktp/tolak/${id}`);
+      await axios.patch(`http://localhost:5000/ktp/reject/${id}`);
       getdataktpById();
     } catch (error) {
       console.log(error);
@@ -75,7 +75,7 @@ const Detailsdataktp = () => {
 
             <div className="row">
               <div className="col">
-                <div className="d-flex mb-3 fw-bold">
+                <div className="d-flex mb-3 fw-bold gap-3">
                   <span style={{ maxWidth: "150px", width: "100%" }}>
                     Status
                   </span>
@@ -83,18 +83,18 @@ const Detailsdataktp = () => {
                   <span>{status}</span>
                 </div>
 
-                <div className="d-flex">
+                <div className="d-flex gap-3">
                   <span style={{ maxWidth: "150px", width: "100%" }}>NIK</span>
                   <span>: </span>
                   <span>{nik}</span>
                 </div>
-                <div className="d-flex">
+                <div className="d-flex gap-3">
                   <span style={{ maxWidth: "150px", width: "100%" }}>Nama</span>
                   <span>: </span>
                   <span>{name}</span>
                 </div>
 
-                <div className="d-flex">
+                <div className="d-flex gap-3">
                   <span style={{ maxWidth: "150px", width: "100%" }}>
                     Tempat, Tanggal Lahir
                   </span>
@@ -104,7 +104,7 @@ const Detailsdataktp = () => {
                   </span>
                 </div>
 
-                <div className="d-flex">
+                <div className="d-flex gap-3">
                   <span style={{ maxWidth: "150px", width: "100%" }}>
                     Jenis Kelamin
                   </span>
@@ -112,7 +112,7 @@ const Detailsdataktp = () => {
                   <span>{jenis_kelamin}</span>
                 </div>
 
-                <div className="d-flex">
+                <div className="d-flex gap-3">
                   <span style={{ maxWidth: "150px", width: "100%" }}>
                     Golongan Darah
                   </span>
@@ -120,7 +120,7 @@ const Detailsdataktp = () => {
                   <span>{gol_darah}</span>
                 </div>
 
-                <div className="d-flex">
+                <div className="d-flex gap-3">
                   <span style={{ maxWidth: "150px", width: "100%" }}>
                     Alamat
                   </span>
@@ -128,7 +128,7 @@ const Detailsdataktp = () => {
                   <span>{alamat}</span>
                 </div>
 
-                <div className="d-flex">
+                <div className="d-flex gap-3">
                   <span style={{ maxWidth: "150px", width: "100%" }}>
                     Agama
                   </span>
@@ -136,7 +136,7 @@ const Detailsdataktp = () => {
                   <span>{agama}</span>
                 </div>
 
-                <div className="d-flex">
+                <div className="d-flex gap-3">
                   <span style={{ maxWidth: "150px", width: "100%" }}>
                     Pekerjaan
                   </span>
@@ -144,32 +144,34 @@ const Detailsdataktp = () => {
                   <span>{pekerjaan}</span>
                 </div>
 
-                <div className="d-flex">
+                <div className="d-flex gap-3">
                   <span style={{ maxWidth: "150px", width: "100%" }}>
                     Kewarganegaraan
                   </span>
                   <span>: </span>
-                  <span>{kewarganegaraan}</span>
+                  <span>{" " +kewarganegaraan}</span>
                 </div>
 
-                { status == "menunggu" ?  
-                <div className="mt-3">
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    onClick={() => terimaKTP(id)}
-                  >
-                    Terima
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-danger"
-                    onClick={() => tolakKTP(id)}
-                  >
-                    Tolak
-                  </button>
-                </div>
-                 : ""}
+                {status == "menunggu" ? (
+                  <div className="mt-3 d-flex gap-2">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      onClick={() => terimaKTP(id)}
+                    >
+                      Terima
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      onClick={() => tolakKTP(id)}
+                    >
+                      Tolak
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
 
               <div className="col-5">

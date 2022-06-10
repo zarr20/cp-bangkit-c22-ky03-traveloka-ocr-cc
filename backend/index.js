@@ -52,4 +52,6 @@ app.use(express.urlencoded({
 app.use(express.json());
 app.use(router);
 
-app.listen(5000, () => console.log("Server berjalan ..."));
+const Port = process.env.PORT || 5000;
+
+app.listen(Port, () => console.log("Server berjalan pada PORT:"+Port));

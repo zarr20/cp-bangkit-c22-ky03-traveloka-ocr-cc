@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom'
 
 const Logout = async () => {
     try {
-        await axios.delete('http://localhost:5000/logout');
+        await axios.delete('http://localhost:5000/admin/logout');
         Navigate("/login");
     } catch (error) {
         console.log(error);

@@ -30,7 +30,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await axios
-      .post("http://localhost:5000/login", {
+      .post("http://localhost:5000/admin/login", {
         email: email,
         password: Password,
       })

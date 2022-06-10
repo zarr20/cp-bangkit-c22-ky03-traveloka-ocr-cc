@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import HeaderAdmin from "../../components/Admin/header";
 import NavAdmin from "../../components/Admin/navigation";
 
-const EditUser = () => {
+const Editadmin = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [tlp, setTelepon] = useState("");
@@ -12,28 +12,27 @@ const EditUser = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    getUserById();
+    getadminById();
   }, []);
 
-  const updateUser = async (e) => {
+  const updateadmin = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/users/${id}`, {
+      await axios.patch(`http://localhost:5000/admin/${id}`, {
         name,
         email,
         tlp,
       });
-      Navigate("/manage-user");
+      Navigate("/manage-admin");
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getUserById = async () => {
-    const response = await axios.get(`http://localhost:5000/users/${id}`);
+  const getadminById = async () => {
+    const response = await axios.get(`http://localhost:5000/admin/${id}`);
     setName(response.data.name);
     setEmail(response.data.email);
-    setTelepon(response.data.tlp);
   };
 
   return (
@@ -44,11 +43,11 @@ const EditUser = () => {
         <div className="row">
           <NavAdmin />
           <div class="col-sm-8">
-          <h1 className="fs-4 fw-bold"> Edit User </h1>
+          <h1 className="fs-4 fw-bold"> Edit Admin </h1>
 
             <div className="columns mt-2 is-centered">
               <div className="column is-hals"></div>
-              <form onSubmit={updateUser}>
+              <form onSubmit={updateadmin}>
                 <div className="mb-2 row">
                   <label className="col-sm-2 col-form-label">Name</label>
                   <div className="control">
@@ -99,4 +98,4 @@ const EditUser = () => {
   );
 };
 
-export default EditUser;
+export default Editadmin;
