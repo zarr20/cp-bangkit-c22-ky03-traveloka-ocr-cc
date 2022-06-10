@@ -23,7 +23,7 @@ export const getadminById = async(req, res) => {
     }
 }
 
-export const Register = async(req, res) => {
+export const Register_admin = async(req, res) => {
     const { name, email, password, confPassword } = req.body;
     if (password !== confPassword) return res.status(400).json({ msg: "Password dan Confirm Password tidak cocok" });
     const salt = await bcrypt.genSalt();
@@ -40,7 +40,7 @@ export const Register = async(req, res) => {
     }
 }
 
-export const Login = async(req, res) => {
+export const Login_admin = async(req, res) => {
     try {
         const admin = await admin.findAll({
             where:{
@@ -73,7 +73,7 @@ export const Login = async(req, res) => {
     }
 }
  
-export const Logout = async(req, res) => {
+export const Logout_admin = async(req, res) => {
     const refreshToken = req.cookies.refreshToken;
     if(!refreshToken) return res.sendStatus(204);
     const admin = await admin.findAll({
