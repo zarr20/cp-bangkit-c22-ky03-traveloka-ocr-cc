@@ -26,11 +26,11 @@ import {
 import {
     getadmin,
     getadminById,
-    Register,
-    Login,
+    Register_admin,
+    Login_admin,
     updateadmin,
     deleteadmin,
-    Logout
+    Logout_admin
 } from "../controllers/adminController.js";
 
 import { verifyToken } from "../middleware/VerifyToken.js";
@@ -89,10 +89,10 @@ router.patch('/dataktp/terima/:id', terimadataktp);
 
 router.get('/admin',  verifyToken, getadmin);
 router.get('/admin/:id', getadminById);
-router.post('/admin', Register);
-router.post('/login', Login);
+router.post('/admin', Register_admin);
+router.post('/login', Login_admin);
 router.get('/token', refreshToken);
-router.delete('/logout', Logout);
+router.delete('/logout', Logout_admin);
 router.patch('/admin/:id', updateadmin);
 router.delete('/admin/:id', deleteadmin);
 
