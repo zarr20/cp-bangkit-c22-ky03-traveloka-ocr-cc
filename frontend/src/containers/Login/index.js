@@ -68,7 +68,7 @@ const Login = () => {
               style={{ marginBottom: "-1px" }}
               type="text"
               value={email}
-              onChange={(e) => setemail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <label for="floatingInput">Email</label>
           </div>
@@ -78,7 +78,7 @@ const Login = () => {
               name="pass"
               type="password"
               value={Password}
-              onChange={(e) => setpassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <label for="floatingInput">Password</label>
           </div>
