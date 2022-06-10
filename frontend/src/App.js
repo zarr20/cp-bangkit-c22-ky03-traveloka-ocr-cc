@@ -17,7 +17,7 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/manage-data" element={<ManageData />} />
-        <Route exact path="/manage-admin" element={<ManageAdmin />} />
+        <Route exact path="/manage-admin" element={<Manageadmin />} />
         <Route exact path="manage-admin/add" element={<Addadmin />} />
         <Route exact path="manage-admin/edit/:id" element={<Editadmin />} />
         <Route exact path="manage-data/edit/:id" element={<Editdataktp />} />
