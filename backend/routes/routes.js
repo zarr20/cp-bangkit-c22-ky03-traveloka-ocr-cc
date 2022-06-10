@@ -38,6 +38,7 @@ router.get('/dataktp/total', countKTP);
 
 router.post('/upload/ktp', function (req, res, next) {
   console.log(req.files);
+  console.log(req.body);
   if (!req.files) {
     return res.status(400).send("No files");
   }
