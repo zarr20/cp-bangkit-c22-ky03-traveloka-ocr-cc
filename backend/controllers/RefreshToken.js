@@ -1,5 +1,6 @@
 import User from "../models/userModel.js";
 import jwt from "jsonwebtoken";
+import admin from "../models/adminModel.js";
 
 export const refreshToken = async(req, res) => {
     try {
@@ -27,22 +28,22 @@ export const refreshToken = async(req, res) => {
 }
 
 
-export const refreshToken_admin = async(req, res) => {
+export const refreshTokenAdmin = async(req, res) => {
     try {
         const refreshToken = req.cookies.refreshToken;
         if (!refreshToken) return res.sendStatus(401);
-        const admin = await admin.findAll({
+        const user = await admin.findAll({
             where: {
                 refresh_token: refreshToken
             }
         });
-        if (!admin[0]) return res.sendStatus(403);
+        if (!user[0]) return res.sendStatus(403);
         jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
             if (err) return res.sendStatus(403);
-            const adminId = admin[0].id;
-            const name = admin[0].name;
-            const email = admin[0].email;
-            const accessToken = jwt.sign({ adminId, name, email }, process.env.ACCESS_TOKEN_SECRET, {
+            const userId = user[0].id;
+            const name = user[0].name;
+            const email = user[0].email;
+            const accessToken = jwt.sign({ userId, name, email }, process.env.ACCESS_TOKEN_SECRET, {
                 expiresIn: '15s'
             });
             res.json({ accessToken });

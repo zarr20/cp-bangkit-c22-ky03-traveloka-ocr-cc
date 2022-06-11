@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 import { useNavigate as useHistory } from "react-router-dom";
 // import { _getadmin } from "../../API/dataktp/getadmin";
-import axios from "axios";
 import HeaderAdmin from "../../components/Admin/header";
 import NavAdmin from "../../components/Admin/navigation";
 import jwt_decode from "jwt-decode";
+import axios from "axios";
 
 const ManageAdmin = () => {
   // const [admin, setadmin] = useState([]);
@@ -18,7 +18,7 @@ const ManageAdmin = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/auth/token");
+      const response = await axios.get("http://localhost:5000/admin/token");
       setToken(response.data.accessToken);
       const decoded = jwt_decode(response.data.accessToken);
       setName(decoded.name);
@@ -36,7 +36,7 @@ const ManageAdmin = () => {
     async (config) => {
       const currentDate = new Date();
       if (expire * 1000 < currentDate.getTime()) {
-        const response = await axios.get("http://localhost:5000/auth/token");
+        const response = await axios.get("http://localhost:5000/admin/token");
         config.headers.Authorization = `Bearer ${response.data.accessToken}`;
         setToken(response.data.accessToken);
         const decoded = jwt_decode(response.data.accessToken);
@@ -60,12 +60,20 @@ const ManageAdmin = () => {
   //   _getadmin();
   // }, []);
 
-  const _getadmin = async () => {
-    const response = await axiosJWT.get("http://localhost:5000/admin", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+  // const _getadmin = async () => {
+  //   const response = await axiosJWT.get("http://localhost:5000/admin", {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  //   console.log(response.data);
+  //   setadmin(response.data);
+  // };
+   const _getadmin = async () => {
+    const response = await axios.get("http://localhost:5000/admin", {
+    
     });
+    console.log(response.data);
     setadmin(response.data);
   };
 

@@ -32,7 +32,7 @@ import {
 } from "../controllers/Admin.js";
 
 import { verifyToken } from "../middleware/VerifyToken.js";
-import { refreshToken } from "../controllers/RefreshToken.js";
+import { refreshToken, refreshTokenAdmin } from "../controllers/RefreshToken.js";
 import { uploadKTP } from "../controllers/UploadFile.js";
 
 // import path from "path";
@@ -74,7 +74,8 @@ router.post("/upload/ktp", uploadKTP);
 
 // User & Admin Routes
 // get token
-router.get("/auth/token", refreshToken);
+router.get("/token", refreshToken);
+router.get("/admin/token", refreshTokenAdmin);
 // User Routes
 router.post("/auth/register", registerUser);
 router.post("/auth/login", loginUser);
@@ -84,7 +85,7 @@ router.get("/users/:id", getUserById);
 router.patch("/users/:id", updateUser);
 router.delete("/users/:id", deleteUser);
 // Admin Routes
-router.get("/admin", verifyToken, getAdmin);
+router.get("/admin", getAdmin);
 router.get("/admin/:id", getAdminById);
 router.post("/admin", registerAdmin);
 router.post("/admin/login", loginAdmin);

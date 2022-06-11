@@ -51,7 +51,8 @@ export const loginUser = async(req, res) => {
 
         // console.log(user[0].password);
         // console.log(user[0].dataValues.Password);
-        const match = await bcrypt.compareSync(req.body.password, user[0].dataValues.Password);
+        console.log( user[0].dataValues);
+        const match = await bcrypt.compareSync(req.body.password, user[0].dataValues.password);
         
         
         // const match = await req.body.password === user[0].password ? true : false;
