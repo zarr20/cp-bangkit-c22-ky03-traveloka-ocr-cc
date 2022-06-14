@@ -22,9 +22,12 @@ function NavAdmin() {
                 <i class="bi bi-list-check me-2"></i> Manage Data
             </NavLink>
 
-            <NavLink exact={true} activeClassName='active' to='/manage-user'>
+<div className='d-none'>
+<NavLink exact={true} activeClassName='active' to='/manage-user'>
                 <i class="bi bi-people me-2"></i> Manage User
             </NavLink>
+    </div>
+            
 
             <button onClick={Logout}><span className="align-items-center" style={{ color: "red" }}><i class="bi bi-box-arrow-right me-2"></i>Logout</span></button>
         

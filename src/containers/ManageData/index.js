@@ -13,14 +13,14 @@ const ManageData = () => {
   }, []);
 
   const _getdataktp = async () => {
-    const response = await axios.get("http://localhost:5000/ktp");
-    setdataktp(response.data);
+    const response = await axios.get(`${process.env.REACT_APP_API_BACKEND_URL}/ktp`);
+    setdataktp(response.data.data);
     console.log(response.data);
   };
 
   const deletedataktp = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/ktp/${id}`);
+      await axios.delete(`${process.env.REACT_APP_API_BACKEND_URL}/ktp/${id}`);
       _getdataktp();
     } catch (error) {
       console.log(error);
@@ -48,15 +48,15 @@ const ManageData = () => {
                 </thead>
                 <tbody>
                   {" "}
-                  {dataktp.map((dataktp, index) => (
+                  {dataktp.map((item, index) => (
                     <tr>
                       <th scope="row"> {index + 1} </th>
-                      <td> {dataktp.nik} </td>
-                      <td> {dataktp.name} </td>
-                      <td> {dataktp.status} </td>
+                      <td> {item.nik} </td>
+                      <td> {item.name} </td>
+                      <td> {item.status} </td>
                       <td>
                         <Link
-                          to={`details/${dataktp.id}`}
+                          to={`details/${item.id}`}
                           className="btn btn-success"
                         >
                           Details

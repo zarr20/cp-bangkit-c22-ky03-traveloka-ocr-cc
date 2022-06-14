@@ -30,18 +30,24 @@ const Login = () => {
     e.preventDefault();
     try {
       await axios
-      .post("http://localhost:5000/admin/login", {
+      .post(`${process.env.REACT_APP_API_BACKEND_URL}/auth`, {
         email: email,
         password: Password,
       })
       .then((res) =>  {
-        localStorage.setItem("token", JSON.stringify(res.data.accessToken));
+        localStorage.setItem("token", JSON.stringify(res.accessToken));
       });
       Navigate("/dashboard");
       
     } catch (error) {
+      console.log(JSON.stringify(error.response));
       if (error.response) {
-        setMsg(error.response.data.msg);
+        if(error.response.data.msg){
+          setMsg(error.response.data.msg);
+        }else{
+          setMsg("Network error");
+        }
+        
       }
     }
   };

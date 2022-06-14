@@ -24,7 +24,7 @@ const Dashboard = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/token");
+      const response = await axios.get(`${process.env.REACT_APP_API_BACKEND_URL}/token`);
       setToken(response.data.accessToken);
       const decoded = jwt_decode(response.data.accessToken);
       setName(decoded.name);
@@ -42,7 +42,7 @@ const Dashboard = () => {
     async (config) => {
       const currentDate = new Date();
       if (expire * 1000 < currentDate.getTime()) {
-        const response = await axios.get("http://localhost:5000/token");
+        const response = await axios.get(`${process.env.REACT_APP_API_BACKEND_URL}/token`);
         config.headers.Authorization = `Bearer ${response.data.accessToken}`;
         setToken(response.data.accessToken);
         const decoded = jwt_decode(response.data.accessToken);
@@ -57,7 +57,7 @@ const Dashboard = () => {
   );
 
   const getadmin = async () => {
-    const response = await axiosJWT.get("http://localhost:5000/admin", {
+    const response = await axiosJWT.get(`${process.env.REACT_APP_API_BACKEND_URL}/admin`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -66,7 +66,7 @@ const Dashboard = () => {
   };
 
   const getKTP_total = async () => {
-      const response = await axios.get("http://localhost:5000/kyc/info");
+      const response = await axios.get(`${process.env.REACT_APP_API_BACKEND_URL}/ktp/count`);
       console.log(response.data.results);
       setKtpTotal(response.data.results);
   };

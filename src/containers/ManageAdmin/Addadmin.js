@@ -12,7 +12,7 @@ const Addadmin = () => {
     const saveadmin = async(e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:5000/admin", {
+            await axios.post(`${process.env.API_BACKEND_URL}/admin`, {
                 name,
                 email,
             });

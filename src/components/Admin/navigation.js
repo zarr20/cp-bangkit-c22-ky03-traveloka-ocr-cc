@@ -9,7 +9,7 @@ function NavAdmin() {
   const Logout = async () => {
     try {
       localStorage.removeItem("token");
-      await axios.delete("http://localhost:5000/admin/logout");
+      await axios.delete(`${process.env.REACT_APP_API_BACKEND_URL}/logout`);
 
       Navigate("/login");
     } catch (error) {
@@ -26,10 +26,11 @@ function NavAdmin() {
       <NavLink exact={true} activeClassName="active" to="/manage-data">
         <i class="bi bi-list-check me-2"></i> Manage Data
       </NavLink>
-
+      <div className='d-none'>
       <NavLink exact={true} activeClassName="active" to="/manage-admin">
         <i class="bi bi-people me-2"></i> Manage Admin
       </NavLink>
+      </div>
 
       <a onClick={Logout}>
         <span style={{ color: "red" }}>

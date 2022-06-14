@@ -27,27 +27,29 @@ const Detailsdataktp = () => {
   }, []);
 
   const getdataktpById = async () => {
-    const response = await axios.get(`http://localhost:5000/ktp/id/${id}`);
+    const response = await axios.get(`${process.env.REACT_APP_API_BACKEND_URL}/ktp/id/${id}`);
 
-    setstatus(response.data.status);
+    console.log(response.data);
 
-    setnik(response.data.nik);
-    setname(response.data.name);
-    settempat(response.data.tempat);
-    settgl_lahir(response.data.tgl_lahir);
-    setjenis_kelamin(response.data.jenis_kelamin);
-    setgol_darah(response.data.gol_darah);
-    setalamat(response.data.alamat);
-    setagama(response.data.agama);
-    setstatus_perkawinan(response.data.status_perkawinan);
-    setpekerjaan(response.data.pekerjaan);
-    setkewarganegaraan(response.data.kewarganegaraan);
-    setkode_pos(response.data.kode_pos);
+    setstatus(response.data.data.status);
+
+    setnik(response.data.data.nik);
+    setname(response.data.data.name);
+    settempat(response.data.data.tempat);
+    settgl_lahir(response.data.data.tgl_lahir);
+    setjenis_kelamin(response.data.data.jenis_kelamin);
+    setgol_darah(response.data.data.gol_darah);
+    setalamat(response.data.data.alamat);
+    setagama(response.data.data.agama);
+    setstatus_perkawinan(response.data.data.status_perkawinan);
+    setpekerjaan(response.data.data.pekerjaan);
+    setkewarganegaraan(response.data.data.kewarganegaraan);
+    setkode_pos(response.data.data.kode_pos);
   };
 
   const terimaKTP = async (id) => {
     try {
-      await axios.patch(`http://localhost:5000/ktp/approve/${id}`);
+      await axios.patch(`${process.env.REACT_APP_API_BACKEND_URL}/ktp/${id}/approve`);
       getdataktpById();
     } catch (error) {
       console.log(error);
@@ -56,7 +58,7 @@ const Detailsdataktp = () => {
 
   const tolakKTP = async (id) => {
     try {
-      await axios.patch(`http://localhost:5000/ktp/reject/${id}`);
+      await axios.patch(`${process.env.REACT_APP_API_BACKEND_URL}/ktp/${id}/reject`);
       getdataktpById();
     } catch (error) {
       console.log(error);
@@ -152,7 +154,7 @@ const Detailsdataktp = () => {
                   <span>{" " +kewarganegaraan}</span>
                 </div>
 
-                {status == "menunggu" ? (
+                {status == "waiting" ? (
                   <div className="mt-3 d-flex gap-2">
                     <button
                       type="button"

@@ -18,7 +18,7 @@ const Editadmin = () => {
   const updateadmin = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/admin/${id}`, {
+      await axios.patch(`${process.env.API_BACKEND_URL}/admin/${id}`, {
         name,
         email,
         tlp,
@@ -30,7 +30,7 @@ const Editadmin = () => {
   };
 
   const getadminById = async () => {
-    const response = await axios.get(`http://localhost:5000/admin/${id}`);
+    const response = await axios.get(`${process.env.API_BACKEND_URL}/admin/${id}`);
     setName(response.data.name);
     setEmail(response.data.email);
   };
