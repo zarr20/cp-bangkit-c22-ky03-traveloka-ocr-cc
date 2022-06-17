@@ -1,3 +1,12 @@
+# **Cloud Computing Path**
+
+# **Google Cloud Platform**
+There are list of Google Cloud Platform that we use :
+1. Google Compute Engine : Creating RESTful APIs and integrating model for interacting with Machine Learning and Mobile Development.
+2. Google Cloud SQL : Creating app database.
+3. VPC Networks : Creating firewallrules to service contoll in users data.
+
+
 # **Get Started**
 
 * Clone repository with command git clone <https://github.com/zarr20/cp-bangkit-c22-ky03-traveloka-ocr-cc.git> and next, type code .
@@ -8,6 +17,7 @@
 
 
 # **API**
+Making API with *NodeJS, ExpressJS,* and *ReactJS* in local.
 
 ## **Authentication User**
 
