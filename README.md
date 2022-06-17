@@ -128,7 +128,7 @@
   
  ## **ID Card (Auth Require)**
  
-    + method : **GET**
+  + method : **GET**
     + endpoint : /ktp
     + body : JSON
     + authorization :
