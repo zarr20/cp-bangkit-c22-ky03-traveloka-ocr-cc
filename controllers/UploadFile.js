@@ -21,9 +21,11 @@ export const uploadFile = async (req, res, next) => {
 
                 const newpath =  `/uploads/ktp_${file.name}`;
 
+console.log(newpath);
+
                 return res.send({ 
                     status: "success", 
-                path: `https://8b45-103-108-130-54.ap.ngrok.io/uploads?url=` + newpath,
+                path: `http://35.225.7.64:3000/uploads?url=` + newpath,
                 name_file: `ktp_${file.name}`
             
             });

@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import db from "./config/Database.js";
+import db from "./config/database.js";
 import router from "./routes/routes.js";
 import fileupload from "express-fileupload";
 import bodyParser from "body-parser";
@@ -63,10 +63,12 @@ console.log(path.join(__dirname, 'uploads'));
 
 app.get('/uploads', (req, res) => {
   try{
+    const buff = Buffer.from(req.query.url, 'base64');
+    const base64_decode = buff.toString('utf-8');
     // str = req.query.url.replace("&=", "");
     // console.log(req.query.url);
     // console.log(decodeURI(req.query.url));
-    res.sendFile(path.join(__dirname,req.query.url))
+    res.sendFile(path.join(__dirname,'uploads/'+ base64_decode))
   }catch(err){
     console.log(err)
   }
