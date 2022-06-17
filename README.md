@@ -1,4 +1,4 @@
-**Get Started**
+# **Get Started**
 
 * Clone repository with command git clone <https://github.com/zarr20/cp-bangkit-c22-ky03-traveloka-ocr-cc.git> and next, type code .
 * Move to directory cp-bangkit-c22-ky03-traveloka-ocr-cc **cd cp-bangkit-c22-ky03-traveloka-ocr-cc**
@@ -7,9 +7,9 @@
 * Running the server **npm run start**
 
 
-**API**
+# **API**
 
-**Authentication User**
+## **Authentication User**
 
 * **Register**
     + method : **POST**
@@ -26,7 +26,7 @@
       ```
       "msg": "Register Berhasil"
       ```
-    If the password and confPassword are not the same it will
+    If the password and confPassword are not the same it will :
        ```
       "msg": "Password dan Confirm Password tidak cocok"
       ```
@@ -95,7 +95,7 @@
       "msg": " "
       ```
     
-  **Authentication Admin**
+ ## **Authentication Admin**
   
  * **Login**
     + method : **POST**
@@ -126,7 +126,7 @@
       ```
   
   
- **ID Card (Auth Require)**
+ ## **ID Card (Auth Require)**
  
  + method : **GET**
     + endpoint : /ktp
