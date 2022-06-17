@@ -30,17 +30,20 @@ const Login = () => {
     e.preventDefault();
     try {
       await axios
-      .post(`${process.env.REACT_APP_API_BACKEND_URL}/auth`, {
+      .post(`${process.env.REACT_APP_API_BACKEND_URL}/auth`, 
+      {
         email: email,
         password: Password,
-      })
+      },
+      
+      )
       .then((res) =>  {
         localStorage.setItem("token", JSON.stringify(res.accessToken));
       });
       Navigate("/dashboard");
       
     } catch (error) {
-      console.log(JSON.stringify(error.response));
+      console.log(JSON.stringify(error));
       if (error.response) {
         if(error.response.data.msg){
           setMsg(error.response.data.msg);

@@ -14,7 +14,7 @@ const ManageData = () => {
 
   const _getdataktp = async () => {
     const response = await axios.get(`${process.env.REACT_APP_API_BACKEND_URL}/ktp`);
-    setdataktp(response.data.data);
+    setdataktp(response.data);
     console.log(response.data);
   };
 

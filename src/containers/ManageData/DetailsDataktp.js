@@ -19,6 +19,7 @@ const Detailsdataktp = () => {
   const [pekerjaan, setpekerjaan] = useState("");
   const [kewarganegaraan, setkewarganegaraan] = useState("");
   const [kode_pos, setkode_pos] = useState("");
+  const [foto_ktp, setfoto_ktp] = useState("");
   const Navigate = useNavigate();
   const { id } = useParams();
 
@@ -29,27 +30,28 @@ const Detailsdataktp = () => {
   const getdataktpById = async () => {
     const response = await axios.get(`${process.env.REACT_APP_API_BACKEND_URL}/ktp/id/${id}`);
 
-    console.log(response.data);
+    // console.log(response.data);
 
-    setstatus(response.data.data.status);
+    setstatus(response.data.status);
 
-    setnik(response.data.data.nik);
-    setname(response.data.data.name);
-    settempat(response.data.data.tempat);
-    settgl_lahir(response.data.data.tgl_lahir);
-    setjenis_kelamin(response.data.data.jenis_kelamin);
-    setgol_darah(response.data.data.gol_darah);
-    setalamat(response.data.data.alamat);
-    setagama(response.data.data.agama);
-    setstatus_perkawinan(response.data.data.status_perkawinan);
-    setpekerjaan(response.data.data.pekerjaan);
-    setkewarganegaraan(response.data.data.kewarganegaraan);
-    setkode_pos(response.data.data.kode_pos);
+    setnik(response.data.nik);
+    setname(response.data.name);
+    settempat(response.data.tempat);
+    settgl_lahir(response.data.tgl_lahir);
+    setjenis_kelamin(response.data.jenis_kelamin);
+    setgol_darah(response.data.gol_darah);
+    setalamat(response.data.alamat);
+    setagama(response.data.agama);
+    setstatus_perkawinan(response.data.status_perkawinan);
+    setpekerjaan(response.data.pekerjaan);
+    setkewarganegaraan(response.data.kewarganegaraan);
+    setkode_pos(response.data.kode_pos);
+    setfoto_ktp(`${process.env.REACT_APP_API_BACKEND_URL}/uploads?url=/uploads/` + response.data.foto_ktp);
   };
 
   const terimaKTP = async (id) => {
     try {
-      await axios.patch(`${process.env.REACT_APP_API_BACKEND_URL}/ktp/${id}/approve`);
+      await axios.patch(`${process.env.REACT_APP_API_BACKEND_URL}/ktp/approve/${id}`);
       getdataktpById();
     } catch (error) {
       console.log(error);
@@ -58,7 +60,7 @@ const Detailsdataktp = () => {
 
   const tolakKTP = async (id) => {
     try {
-      await axios.patch(`${process.env.REACT_APP_API_BACKEND_URL}/ktp/${id}/reject`);
+      await axios.patch(`${process.env.REACT_APP_API_BACKEND_URL}/ktp/reject/${id}`);
       getdataktpById();
     } catch (error) {
       console.log(error);
@@ -154,7 +156,7 @@ const Detailsdataktp = () => {
                   <span>{" " +kewarganegaraan}</span>
                 </div>
 
-                {status == "waiting" ? (
+                {status == "menunggu" ? (
                   <div className="mt-3 d-flex gap-2">
                     <button
                       type="button"
@@ -179,7 +181,7 @@ const Detailsdataktp = () => {
               <div className="col-5">
                 <img
                   style={{ width: "100%" }}
-                  src="https://miro.medium.com/max/1388/1*KXxj_GFYy9CwAOG-zkGf8g.png"
+                  src={foto_ktp}
                 />
               </div>
             </div>
