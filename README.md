@@ -128,7 +128,7 @@
   
  ## **ID Card (Auth Require)**
  
- + method : **GET**
+    + method : **GET**
     + endpoint : /ktp
     + body : JSON
     + authorization :
@@ -159,9 +159,9 @@
       "msg": " "
       ```
     
-**Count ID Card**
+* **Count ID Card**
  
- + method : **GET**
+    + method : **GET**
     + endpoint : /ktp/count
     + body : JSON
     + body request :
@@ -172,10 +172,10 @@
       ```
       "msg": " "
       ```
-    
- **Get ID Card By NIK**
+
+* **Get ID Card By NIK**
  
- + method : **GET**
+    + method : **GET**
     + endpoint : /ktp/:nik
     + body : JSON
     + body request :
@@ -187,9 +187,9 @@
       "msg": " "
       ```
  
-**Get ID Card By ID**
+* **Get ID Card By ID**
  
- + method : **GET**
+    + method : **GET**
     + endpoint : /ktp/id/:id
     + body : JSON
     + body request :
@@ -219,9 +219,9 @@
       "msg": " "
       ```
     
-**Edit ID Card**
+* **Edit ID Card**
  
- + method : **POST**
+    + method : **POST**
     + endpoint : /ktp
     + body : JSON
     + body request :
@@ -233,9 +233,9 @@
       "msg": " "
       ```
     
-**Update ID Card By ID**
+* **Update ID Card By ID**
  
- + method : **PATCH**
+    + method : **PATCH**
     + endpoint : /ktp/:id
     + body : JSON
     + body request :
@@ -266,9 +266,9 @@
       "msg": "Data KTP Updated"
       ```
  
- **Status ID Card**
+* **Status ID Card**
  
- + method : **PATCH**
+    + method : **PATCH**
     + endpoint : /ktp/:id/:status
     + body : JSON
     + body request :
@@ -280,9 +280,9 @@
       "msg": " "
       ```
     
-**Upload File ID Card**
+* **Upload File ID Card**
  
- + method : **POST**
+    + method : **POST**
     + endpoint : /upload/ktp
     + body : JSON
     + body request :
